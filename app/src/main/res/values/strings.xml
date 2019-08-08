@@ -1,0 +1,350 @@
+<resources>
+    <string name="app_name">One Move</string>
+
+    <string name="welcome_title" translatable="false">The Currency App</string>
+    <string name="welcome_subtitle" translatable="false">Powered by Libra and One Identity</string>
+    <string name="welcome_button_1" translatable="false">Get Started</string>
+
+    <string name="param_first_name">param_first_name</string>
+    <string name="param_last_name">param_last_name</string>
+    <string name="param_email">param_email</string>
+    <string name="param_contact">param_contact</string>
+    <string name="param_password">param_password</string>
+    <string name="param_libra_wallet_address">param_libra_wallet_address</string>
+    <string name="param_libra_balance">param_libra_balance</string>
+    <string name="param_libra_mnemonic">param_libra_mnemonic</string>
+    <string name="param_oneid_token">param_oneid_token</string>
+    <string name="param_oneid_credential">param_oneid_credential</string>
+    <string name="param_oneid_selfie">param_oneid_selfie</string>
+    <string name="param_oneid_endpoint_did">param_oneid_endpoint_did</string>
+    <string name="param_oneid_created_at">param_oneid_created_at</string>
+    <string name="param_oneid_wallet_name">param_oneid_wallet_name</string>
+    <string name="param_oneid_wallet_address">param_oneid_wallet_address</string>
+    <string name="param_oneid_gender">param_oneid_gender</string>
+    <string name="param_oneid_dob">param_oneid_dob</string>
+    <string name="param_oneid_nationality">param_oneid_nationality</string>
+    <string name="param_oneid_nationality_id">param_oneid_nationality_id</string>
+    <string name="param_oneid_company_name">param_oneid_company_name</string>
+    <string name="param_oneid_job_title">param_oneid_job_title</string>
+    <string name="param_oneid_id_type">param_oneid_id_type</string>
+    <string name="param_oneid_id_type_name">param_oneid_id_type_name</string>
+    <string name="param_oneid_id_no">param_oneid_id_no</string>
+    <string name="param_oneid_id_image">param_oneid_id_image</string>
+    <string name="param_oneid_address_image">param_oneid_address_image</string>
+    <string name="param_utility_user_id">param_utility_user_id</string>
+    <string name="param_last_transferred_date">param_last_transferred_date</string>
+    <string name="param_last_transferred_amount">param_last_transferred_amount</string>
+
+    <string name="choose_id_type">Choose your id type</string>
+    <string name="loading">Loading</string>
+    <string name="please_wait">Please wait&#8230;</string>
+    <string name="log_in">Log in</string>
+    <string name="email">Email</string>
+    <string name="contact">Contact</string>
+    <string name="password">Password</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="is_free">It\'s free</string>
+    <string name="almost_done">Almost done</string>
+    <string name="your_full_name">Your full name</string>
+    <string name="wallet_address">Wallet Address</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="legal_name_message">Please input your full legal name as shown on your passport or driving license</string>
+    <string name="password_message">Your password should be at least 8 characters, and include 1 upper case letter, 1 lower case letter and 1 number.</string>
+    <string name="proof_of_address_message">Take a clear and legible picture of a recent utility bill displaying your adddress (electricity, phone, water)</string>
+    <string name="continue_text">Continue</string>
+    <string name="your_login_details">Your login details</string>
+    <string name="got_referral_code">Got a referral code?</string>
+    <string name="current_balance">Current balance</string>
+    <string name="home">Home</string>
+    <string name="contacts">Contacts</string>
+    <string name="activity">Activity</string>
+    <string name="profile">Profile</string>
+    <string name="log_out">Log Out</string>
+    <string name="drawer_open">Drawer open</string>
+    <string name="drawer_close">Drawer close</string>
+    <string name="send_money_to">Send money to</string>
+    <string name="recent">Recent</string>
+    <string name="overview">Overview</string>
+    <string name="transactions">Transactions</string>
+    <string name="pay">Pay</string>
+    <string name="add_new">Add new</string>
+    <string name="scan_qr">Scan QR Code</string>
+    <string name="latest_transactions">Latest Transactions</string>
+    <string name="view_all">View all</string>
+    <string name="view_wallet_address">Tap to View Wallet Address</string>
+    <string name="this_month">This month</string>
+    <string name="payment_request">Payment Request</string>
+    <string name="copy_address">Copy Address</string>
+    <string name="wallet_address_copied">Wallet address copied</string>
+    <string name="expense">Expense</string>
+    <string name="transactions_id">Transaction ID</string>
+    <string name="transactions_made_at">Transaction made at</string>
+    <string name="search">Search</string>
+    <string name="search_contact">Search Contact</string>
+    <string name="charge">Charge</string>
+    <string name="balance">Balance</string>
+    <string name="speed">Speed</string>
+    <string name="fee">Fee</string>
+    <string name="total">Total</string>
+    <string name="instant">~instant</string>
+    <string name="to">To</string>
+    <string name="comment">Comment</string>
+    <string name="what_it_for">What\'s it for</string>
+    <string name="complete_your_registration">Complete your registration</string>
+    <string name="complete_your_registration_message">Let\'s get you registered so you can send money safely and securely</string>
+    <string name="job_title">Job Title</string>
+    <string name="gender">Gender</string>
+    <string name="dob">DOB</string>
+    <string name="nationality">Nationality</string>
+    <string name="id_no">ID Number</string>
+    <string name="company_name">Company Name</string>
+    <string name="id_type">ID Type</string>
+    <string name="selfie_message">Selfie image will be automatically captured after you have performed the liveness verification to match with the photo of your passport\n\nPlease ensure you have upload a clear copy of your passport image\n\nDuring the process, we will ask you to perform action to confirm you are real person\n\nThe process will take less than 10 seconds if done correctly. Else you will need to repeat the process</string>
+    <string name="passport_id_license_image_message">"Upload a clear and legible picture of your passport / identity card / driving license front page</string>
+    <string name="account_detail">Your account details are listed below. For security reasons, some of these details are hidden</string>
+    <string name="tap_to_upload_photo">Tap here to upload your photo</string>
+    <string name="create_identty">Create identity</string>
+    <string name="automatic_verification">Autmatic Verification</string>
+    <string name="success">Success</string>
+    <string name="success_identity_credential">Congratulation. You have now obtained your identity credential. You can now connect with other Entity.</string>
+
+
+    <string name="error">Error</string>
+    <string name="error_missing_automatic_verification">Please complete the automatic verification to obtain a selfie image</string>
+    <string name="error_missing_identification_image">Please submit an identification image based on your chosen ID type (Passport, ID or driving license)</string>
+    <string name="error_check_box_got_it">You need to check on the checkbox</string>
+    <string name="error_invalid_email">Email address not valid</string>
+    <string name="error_passport_image_and_selfie_not_match">Passport image doesn\'t match with selfie image. Make sure your are the valid owner of the passport</string>
+    <string name="error_passport_image_not_found">Please ensure that you have already uploaded your passport image</string>
+    <string name="error_password_length">Password length must be within 8 to 20 characters</string>
+    <string name="error_password_not_match">Password not match</string>
+    <string name="error_please_try_again">An error occurred. Please try again.</string>
+    <string name="error_required_field">This is a required field</string>
+    <string name="error_unable_to_open_camera">Error opening camera</string>
+    <string name="error_password_not_strong">Make sure your password contains minimum 8 charc</string>
+    <string name="error_recipient_cannot_be_empty">You must have at least one recipient</string>
+    <string name="error_amount_cannot_be_zero">Amount cannot be 0</string>
+    <string name="error_over_limit_transfer">Amount to be transferred cannot be more than your current balance</string>
+    <string name="error_unable_to_add_yourself">Unable to your yourself into list</string>
+    <string name="error_recipient_existed">Recipient is already added into the list</string>
+    <string name="error_daily_transfer_limit_for_non_verify_account">You have reached your daily trasnfer limit of 50 USD. Please verify your account and receive a digital identity in order to unlock the full feature without limit.</string>
+    <string name="error_daily_transfer_limit_for_non_verify_account_leftover">You have reached your daily trasnfer limit of 50 USD. Please verify your account and receive a digital identity in order to unlock the full feature without limit. You can only transfer up to the maximum limit of</string>
+    <string name="error_daily_transfer_limit_for_non_verify_account_leftover_2">for today.</string>
+
+    <string name="confirm_add_user">Confirm to add user into your contact?</string>
+    <string name="confirm_remove_recipient">Confirm to remove this recipient?</string>
+    <string name="confirm_logout">Confirm to logout? This will clear all your data and you might not be able to recover your account for the current stage of our development.</string>
+    <string name="success_payment_transfer">Transfer payment successful</string>
+
+    <string name="success_add_user_to_contact">User successfully added into contact</string>
+
+    <string-array name="country_code" >
+        <item>+93,AF</item>
+        <item>+355,AL</item>
+        <item>+213,DZ</item>
+        <item>+376,AD</item>
+        <item>+244,AO</item>
+        <item>+672,AQ</item>
+        <item>+54,AR</item>
+        <item>+374,AM</item>
+        <item>+297,AW</item>
+        <item>+61,AU</item>
+        <item>+43,AT</item>
+        <item>+994,AZ</item>
+        <item>+973,BH</item>
+        <item>+880,BD</item>
+        <item>+375,BY</item>
+        <item>+32,BE</item>
+        <item>+501,BZ</item>
+        <item>+229,BJ</item>
+        <item>+975,BT</item>
+        <item>+591,BO</item>
+        <item>+387,BA</item>
+        <item>+267,BW</item>
+        <item>+55,BR</item>
+        <item>+673,BN</item>
+        <item>+359,BG</item>
+        <item>+226,BF</item>
+        <item>+95,MM</item>
+        <item>+257,BI</item>
+        <item>+855,KH</item>
+        <item>+237,CM</item>
+        <item>+1,CA</item>
+        <item>+238,CV</item>
+        <item>+236,CF</item>
+        <item>+235,TD</item>
+        <item>+56,CL</item>
+        <item>+86,CN</item>
+        <item>+61,CX</item>
+        <item>+61,CC</item>
+        <item>+57,CO</item>
+        <item>+269,KM</item>
+        <item>+242,CG</item>
+        <item>+243,CD</item>
+        <item>+682,CK</item>
+        <item>+506,CR</item>
+        <item>+385,HR</item>
+        <item>+53,CU</item>
+        <item>+357,CY</item>
+        <item>+420,CZ</item>
+        <item>+45,DK</item>
+        <item>+253,DJ</item>
+        <item>+670,TL</item>
+        <item>+593,EC</item>
+        <item>+20,EG</item>
+        <item>+503,SV</item>
+        <item>+240,GQ</item>
+        <item>+291,ER</item>
+        <item>+372,EE</item>
+        <item>+251,ET</item>
+        <item>+500,FK</item>
+        <item>+298,FO</item>
+        <item>+679,FJ</item>
+        <item>+358,FI</item>
+        <item>+33,FR</item>
+        <item>+689,PF</item>
+        <item>+241,GA</item>
+        <item>+220,GM</item>
+        <item>+995,GE</item>
+        <item>+49,DE</item>
+        <item>+233,GH</item>
+        <item>+350,GI</item>
+        <item>+30,GR</item>
+        <item>+299,GL</item>
+        <item>+502,GT</item>
+        <item>+224,GN</item>
+        <item>+245,GW</item>
+        <item>+592,GY</item>
+        <item>+509,HT</item>
+        <item>+504,HN</item>
+        <item>+852,HK</item>
+        <item>+36,HU</item>
+        <item>+91,IN</item>
+        <item>+62,ID</item>
+        <item>+98,IR</item>
+        <item>+964,IQ</item>
+        <item>+353,IE</item>
+        <item>+44,IM</item>
+        <item>+972,IL</item>
+        <item>+39,IT</item>
+        <item>+225,CI</item>
+        <item>+81,JP</item>
+        <item>+962,JO</item>
+        <item>+7,KZ</item>
+        <item>+254,KE</item>
+        <item>+686,KI</item>
+        <item>+965,KW</item>
+        <item>+996,KG</item>
+        <item>+856,LA</item>
+        <item>+371,LV</item>
+        <item>+961,LB</item>
+        <item>+266,LS</item>
+        <item>+231,LR</item>
+        <item>+218,LY</item>
+        <item>+423,LI</item>
+        <item>+370,LT</item>
+        <item>+352,LU</item>
+        <item>+853,MO</item>
+        <item>+389,MK</item>
+        <item>+261,MG</item>
+        <item>+265,MW</item>
+        <item>+60,MY</item>
+        <item>+960,MV</item>
+        <item>+223,ML</item>
+        <item>+356,MT</item>
+        <item>+692,MH</item>
+        <item>+222,MR</item>
+        <item>+230,MU</item>
+        <item>+262,YT</item>
+        <item>+52,MX</item>
+        <item>+691,FM</item>
+        <item>+373,MD</item>
+        <item>+377,MC</item>
+        <item>+976,MN</item>
+        <item>+382,ME</item>
+        <item>+212,MA</item>
+        <item>+258,MZ</item>
+        <item>+264,NA</item>
+        <item>+674,NR</item>
+        <item>+977,NP</item>
+        <item>+31,NL</item>
+        <item>+599,AN</item>
+        <item>+687,NC</item>
+        <item>+64,NZ</item>
+        <item>+505,NI</item>
+        <item>+227,NE</item>
+        <item>+234,NG</item>
+        <item>+683,NU</item>
+        <item>+850,KP</item>
+        <item>+47,NO</item>
+        <item>+968,OM</item>
+        <item>+92,PK</item>
+        <item>+680,PW</item>
+        <item>+507,PA</item>
+        <item>+675,PG</item>
+        <item>+595,PY</item>
+        <item>+51,PE</item>
+        <item>+63,PH</item>
+        <item>+870,PN</item>
+        <item>+48,PL</item>
+        <item>+351,PT</item>
+        <item>+1,PR</item>
+        <item>+974,QA</item>
+        <item>+40,RO</item>
+        <item>+7,RU</item>
+        <item>+250,RW</item>
+        <item>+590,BL</item>
+        <item>+685,WS</item>
+        <item>+378,SM</item>
+        <item>+239,ST</item>
+        <item>+966,SA</item>
+        <item>+221,SN</item>
+        <item>+381,RS</item>
+        <item>+248,SC</item>
+        <item>+232,SL</item>
+        <item>+65,SG</item>
+        <item>+421,SK</item>
+        <item>+386,SI</item>
+        <item>+677,SB</item>
+        <item>+252,SO</item>
+        <item>+27,ZA</item>
+        <item>+82,KR</item>
+        <item>+34,ES</item>
+        <item>+94,LK</item>
+        <item>+290,SH</item>
+        <item>+508,PM</item>
+        <item>+249,SD</item>
+        <item>+597,SR</item>
+        <item>+268,SZ</item>
+        <item>+46,SE</item>
+        <item>+41,CH</item>
+        <item>+963,SY</item>
+        <item>+886,TW</item>
+        <item>+992,TJ</item>
+        <item>+255,TZ</item>
+        <item>+66,TH</item>
+        <item>+228,TG</item>
+        <item>+690,TK</item>
+        <item>+676,TO</item>
+        <item>+216,TN</item>
+        <item>+90,TR</item>
+        <item>+993,TM</item>
+        <item>+688,TV</item>
+        <item>+971,AE</item>
+        <item>+256,UG</item>
+        <item>+44,GB</item>
+        <item>+380,UA</item>
+        <item>+598,UY</item>
+        <item>+1,US</item>
+        <item>+998,UZ</item>
+        <item>+678,VU</item>
+        <item>+39,VA</item>
+        <item>+58,VE</item>
+        <item>+84,VN</item>
+        <item>+681,WF</item>
+        <item>+967,YE</item>
+        <item>+260,ZM</item>
+        <item>+263,ZW</item>
+    </string-array>
+</resources>

@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dip"
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_back"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/back_active"/>
+
+        <Space
+            android:layout_width="0dip"
+            android:layout_height="30dip"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="20dip"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <TextView
+                    android:fontFamily="@font/nbi_b"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorBlack"
+                    android:text="@string/charge" />
+
+                <TextView
+                    android:fontFamily="@font/nbi_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorBlack"
+                    android:text="@string/balance" />
+                <Space
+                    android:layout_width="8dip"
+                    android:layout_height="10dip" />
+                <TextView
+                    android:id="@+id/text_balance"
+                    android:fontFamily="@font/nbi_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorTurquoise"
+                    android:text="$ 0" />
+            </LinearLayout>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20dip" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:fontFamily="@font/nbi_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:textColor="@color/colorTurquoise"
+                    android:text="$" />
+                <Space
+                    android:layout_width="8dip"
+                    android:layout_height="10dip" />
+
+                <EditText
+                    android:id="@+id/input_amount_left"
+                    android:fontFamily="@font/nbi_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:background="@android:color/transparent"
+                    android:imeOptions="actionNext"
+                    android:hint=""
+                    android:text="0"
+                    android:textSize="34sp"
+                    android:textColor="@color/colorLightIndigo"
+                    app:fontFamily="sans-serif"/>
+                <TextView
+                    android:fontFamily="@font/nbi_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="34sp"
+                    android:textColor="@color/colorLightIndigo"
+                    android:text="." />
+                <EditText
+                    android:id="@+id/input_amount_right"
+                    android:fontFamily="@font/nbi_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:inputType="numberDecimal"
+                    android:background="@android:color/transparent"
+                    android:imeOptions="actionDone"
+                    android:hint=""
+                    android:text="00"
+                    android:textSize="34sp"
+                    android:textColor="@color/colorLightIndigo"
+                    app:fontFamily="sans-serif"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_stepper_increment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/stepper_increment"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/stepper_separator"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_stepper_decrement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/stepper_decrement"/>
+                </LinearLayout>
+            </LinearLayout>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="30dip" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="14dip"
+                android:background="@drawable/square_input_torquoise"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:fontFamily="@font/nbi_b"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorTurquoise"
+                        android:text="@string/speed" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="6dip" />
+                    <TextView
+                        android:id="@+id/text_speed"
+                        android:fontFamily="@font/nbi_b"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"
+                        android:text="@string/instant" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:fontFamily="@font/nbi_b"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorTurquoise"
+                        android:text="@string/fee" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="6dip" />
+                    <TextView
+                        android:id="@+id/text_fee"
+                        android:fontFamily="@font/nbi_b"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"
+                        android:text="0.00" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:fontFamily="@font/nbi_b"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorTurquoise"
+                        android:text="@string/total" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="6dip" />
+                    <TextView
+                        android:id="@+id/text_total"
+                        android:fontFamily="@font/nbi_b"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"
+                        android:text="0.00" />
+                </LinearLayout>
+            </LinearLayout>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20dip" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:fontFamily="@font/nbi_light"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorGray"
+                    android:text="@string/to" />
+
+                <LinearLayout
+                    android:id="@+id/layout_scan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="20dip"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/plus_active"/>
+
+                    <TextView
+                        android:fontFamily="@font/nbi_b"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorTurquoise"
+                        android:text="@string/scan_qr" />
+                </LinearLayout>
+                <Space
+                    android:layout_width="20dip"
+                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:id="@+id/layout_add_new"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="20dip"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/plus_active"/>
+
+                    <TextView
+                        android:fontFamily="@font/nbi_b"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorTurquoise"
+                        android:text="@string/add_new" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dip" />
+
+            <EditText
+                android:id="@+id/input_address"
+                android:fontFamily="@font/nbi_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:imeOptions="actionDone"
+                android:hint=""
+                android:text=""
+                android:textSize="16sp"
+                android:textColor="@color/colorInput"
+                android:background="@drawable/rounded_input_torquoise"
+                android:padding="14dip"
+                app:fontFamily="sans-serif"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:background="@drawable/square_input_torquoise"
+                android:scrollbars="none" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20dip" />
+            <TextView
+                android:fontFamily="@font/nbi_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/colorGray"
+                android:text="@string/comment" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dip" />
+
+            <EditText
+                android:id="@+id/input_comment"
+                android:fontFamily="@font/nbi_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:imeOptions="actionDone"
+                android:hint="@string/what_it_for"
+                android:text=""
+                android:textSize="16sp"
+                android:textColor="@color/colorInput"
+                android:background="@drawable/square_input_torquoise"
+                android:padding="14dip"
+                app:fontFamily="sans-serif"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20dip" />
+        </LinearLayout>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dip">
+
+        <Button
+            android:id="@+id/button_pay"
+            android:fontFamily="@font/nbi_b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:minWidth="200dip"
+            android:padding="20dip"
+            android:textSize="16sp"
+            android:textColor="@color/colorWhite"
+            android:text="@string/pay"
+            android:background="@drawable/rounded_indigo"/>
+    </LinearLayout>
+</LinearLayout>

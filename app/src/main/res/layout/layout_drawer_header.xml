@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_margin="20dip"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="40dip" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_profile"
+                android:layout_width="80dip"
+                android:layout_height="80dip"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:src="@drawable/default_user"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20dip" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/text_balance"
+                    android:fontFamily="@font/nbi_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="38sp"
+                    android:textColor="@color/colorLightIndigo"
+                    android:text="0" />
+                <TextView
+                    android:fontFamily="@font/nbi_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorTurquoise"
+                    android:text="/ USD" />
+            </LinearLayout>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="0dip" />
+
+            <TextView
+                android:fontFamily="@font/nbi_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/colorGray"
+                android:text="@string/current_balance" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="60dip" />
+
+            <LinearLayout
+                android:id="@+id/layout_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/home"/>
+
+                <Space
+                    android:layout_width="40dip"
+                    android:layout_height="10dip" />
+
+                <TextView
+                    android:fontFamily="@font/nbi_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorBlack"
+                    android:text="@string/home" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20dip" />
+
+            <LinearLayout
+                android:id="@+id/layout_contacts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/contacts_active"/>
+
+                <Space
+                    android:layout_width="40dip"
+                    android:layout_height="10dip" />
+
+                <TextView
+                    android:fontFamily="@font/nbi_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorBlack"
+                    android:text="@string/contacts" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20dip" />
+
+            <LinearLayout
+                android:id="@+id/layout_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/activity_active"/>
+
+                <Space
+                    android:layout_width="40dip"
+                    android:layout_height="10dip" />
+
+                <TextView
+                    android:fontFamily="@font/nbi_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorBlack"
+                    android:text="@string/activity" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20dip" />
+
+            <LinearLayout
+                android:id="@+id/layout_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/profile_active"/>
+
+                <Space
+                    android:layout_width="40dip"
+                    android:layout_height="10dip" />
+
+                <TextView
+                    android:fontFamily="@font/nbi_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorBlack"
+                    android:text="@string/profile" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="40dip" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

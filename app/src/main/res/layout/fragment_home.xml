@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dip"
+            android:orientation="vertical">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_side_menu"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/navigation_active"/>
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                        <TextView
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="30sp"
+                            android:textColor="@color/colorLightIndigo"
+                            android:text="@string/home" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+                                        <TextView
+                                            android:fontFamily="@font/nbi_b"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="20sp"
+                                            android:textColor="@color/colorBlack"
+                                            android:text="@string/overview" />
+                                        <Space
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="20dip" />
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="top"
+                                            android:orientation="horizontal">
+                                                <TextView
+                                                    android:id="@+id/text_transaction"
+                                                    android:fontFamily="@font/nbi_b"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textSize="38sp"
+                                                    android:textColor="@color/colorLightIndigo"
+                                                    android:text="0" />
+                                        </LinearLayout>
+                                        <Space
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="0dip" />
+
+                                        <TextView
+                                            android:fontFamily="@font/nbi_light"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="16sp"
+                                            android:textColor="@color/colorGray"
+                                            android:text="@string/transactions" />
+
+                                        <Space
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="20dip" />
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="top"
+                                            android:orientation="horizontal">
+                                                <TextView
+                                                    android:id="@+id/text_balance"
+                                                    android:fontFamily="@font/nbi_b"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textSize="38sp"
+                                                    android:textColor="@color/colorLightIndigo"
+                                                    android:text="0" />
+                                                <TextView
+                                                    android:fontFamily="@font/nbi_b"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="match_parent"
+                                                    android:textSize="18sp"
+                                                    android:textColor="@color/colorTurquoise"
+                                                    android:text="/ USD" />
+                                        </LinearLayout>
+                                        <Space
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="0dip" />
+
+                                        <TextView
+                                            android:fontFamily="@font/nbi_light"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="16sp"
+                                            android:textColor="@color/colorGray"
+                                            android:text="@string/current_balance" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                            android:id="@+id/image_qrcode"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="@color/colorTurquoise"
+                                            android:padding="10dip"
+                                            android:scaleType="fitCenter"
+                                            android:adjustViewBounds="true"/>
+
+                                        <Space
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="12dip" />
+
+                                        <TextView
+                                            android:fontFamily="@font/nbi_light"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:textSize="16sp"
+                                            android:textColor="@color/colorGray"
+                                            android:text="@string/view_wallet_address" />
+                                </LinearLayout>
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                                <TextView
+                                    android:fontFamily="@font/nbi_b"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="20sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/pay" />
+
+                                <LinearLayout
+                                    android:id="@+id/layout_add_new"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                            android:layout_width="20dip"
+                                            android:layout_height="wrap_content"
+                                            android:scaleType="fitCenter"
+                                            android:adjustViewBounds="true"
+                                            android:src="@drawable/plus_active"/>
+
+                                        <TextView
+                                            android:fontFamily="@font/nbi_b"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="16sp"
+                                            android:textColor="@color/colorTurquoise"
+                                            android:text="@string/add_new" />
+                                </LinearLayout>
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dip" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycler_view_horizontal_contact"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dip" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                                <TextView
+                                    android:fontFamily="@font/nbi_b"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="20sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/latest_transactions" />
+
+                                <LinearLayout
+                                    android:id="@+id/layout_view_all"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+                                        <TextView
+                                            android:fontFamily="@font/nbi_b"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="16sp"
+                                            android:textColor="@color/colorTurquoise"
+                                            android:text="@string/view_all" />
+                                </LinearLayout>
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dip" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycler_view_transaction"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scrollbars="none" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dip" />
+
+                </LinearLayout>
+        </ScrollView>
+</LinearLayout>

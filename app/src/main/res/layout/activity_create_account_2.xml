@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="20dip"
+                    android:layout_height="0dip"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dip" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="300dip"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitCenter"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/logo"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dip" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="32sp"
+                            android:textColor="@color/colorLightIndigo"
+                            android:text="@string/create_an_account" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="30sp"
+                            android:textColor="@color/colorLightIndigo"
+                            android:text="@string/almost_done" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorBlack"
+                            android:text="@string/your_login_details" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dip" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorGray"
+                            android:text="@string/email" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip" />
+
+                        <EditText
+                            android:id="@+id/input_email"
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"
+                            android:imeOptions="actionNext"
+                            android:hint=""
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textColor="@color/colorInput"
+                            android:background="@drawable/rounded_input_torquoise"
+                            android:padding="14dip"
+                            app:fontFamily="sans-serif"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dip" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorGray"
+                            android:text="@string/contact" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip" />
+
+                        <EditText
+                            android:id="@+id/input_contact"
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="phone"
+                            android:imeOptions="actionNext"
+                            android:hint=""
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textColor="@color/colorInput"
+                            android:background="@drawable/rounded_input_torquoise"
+                            android:padding="14dip"
+                            app:fontFamily="sans-serif"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dip" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorGray"
+                                    android:text="@string/password" />
+
+                                <LinearLayout
+                                    android:id="@+id/layout_password_strenght_1"
+                                    android:layout_width="40dip"
+                                    android:layout_height="8dip"
+                                    android:orientation="horizontal"
+                                    android:background="@drawable/rounded_password_unhighlight"/>
+                                <Space
+                                    android:layout_width="5dip"
+                                    android:layout_height="wrap_content" />
+                                <LinearLayout
+                                    android:id="@+id/layout_password_strenght_2"
+                                    android:layout_width="40dip"
+                                    android:layout_height="8dip"
+                                    android:orientation="horizontal"
+                                    android:background="@drawable/rounded_password_unhighlight"/>
+                                <Space
+                                    android:layout_width="5dip"
+                                    android:layout_height="wrap_content" />
+                                <LinearLayout
+                                    android:id="@+id/layout_password_strenght_3"
+                                    android:layout_width="40dip"
+                                    android:layout_height="8dip"
+                                    android:orientation="horizontal"
+                                    android:background="@drawable/rounded_password_unhighlight"/>
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip" />
+
+                        <EditText
+                            android:id="@+id/input_password"
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:imeOptions="actionDone"
+                            android:hint=""
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textColor="@color/colorInput"
+                            android:background="@drawable/rounded_input_torquoise"
+                            android:padding="14dip"
+                            app:fontFamily="sans-serif"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorGray"
+                            android:text="@string/password_message" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="18sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/got_referral_code" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/image_switch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:scaleType="fitCenter"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/switch_off"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layout_referral_code"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                                <Space
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="10dip" />
+                                <EditText
+                                    android:id="@+id/input_referral_code"
+                                    android:fontFamily="@font/nbi_b"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textEmailAddress"
+                                    android:imeOptions="actionNext"
+                                    android:hint=""
+                                    android:text=""
+                                    android:textSize="18sp"
+                                    android:textColor="@color/colorInput"
+                                    android:background="@drawable/rounded_input_torquoise"
+                                    android:padding="16dip"
+                                    app:fontFamily="sans-serif"/>
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dip" />
+
+                        <Button
+                            android:id="@+id/button_continue"
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAllCaps="false"
+                            android:minWidth="200dip"
+                            android:padding="20dip"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorWhite"
+                            android:text="@string/continue_text"
+                            android:background="@drawable/rounded_indigo"/>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dip" />
+
+                </LinearLayout>
+        </ScrollView>
+</LinearLayout>

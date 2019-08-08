@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dip"
+            android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_side_menu"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/navigation_active"/>
+
+                <Space
+                    android:layout_width="0dip"
+                    android:layout_height="30dip"
+                    android:layout_weight="1"/>
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                        <TextView
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="30sp"
+                            android:textColor="@color/colorLightIndigo"
+                            android:text="@string/profile" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <LinearLayout
+                            android:id="@+id/layout_complete_profile_section"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+                                <TextView
+                                    android:fontFamily="@font/nbi_b"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/complete_your_registration" />
+
+                                <Space
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dip" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorGray"
+                                    android:text="@string/complete_your_registration_message" />
+
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                            android:id="@+id/image_arrow"
+                                            android:layout_width="30dip"
+                                            android:layout_height="30dip"
+                                            android:scaleType="fitCenter"
+                                            android:adjustViewBounds="true"
+                                            android:src="@drawable/arrow_active"/>
+
+                                </LinearLayout>
+
+                                <Space
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dip" />
+
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorGray"
+                                    android:text="@string/account_detail" />
+
+                                <Space
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dip" />
+                        </LinearLayout>
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/image_profile"
+                            android:layout_width="100dip"
+                            android:layout_height="100dip"
+                            android:scaleType="fitCenter"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/default_user"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorGray"
+                            android:text="@string/first_name" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip" />
+
+                        <EditText
+                            android:id="@+id/input_first_name"
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:imeOptions="actionNext"
+                            android:hint=""
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textColor="@color/colorInput"
+                            android:background="@drawable/rounded_input_torquoise"
+                            android:padding="14dip"
+                            app:fontFamily="sans-serif"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorGray"
+                            android:text="@string/last_name" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip" />
+
+                        <EditText
+                            android:id="@+id/input_last_name"
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:imeOptions="actionNext"
+                            android:hint=""
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textColor="@color/colorInput"
+                            android:background="@drawable/rounded_input_torquoise"
+                            android:padding="14dip"
+                            app:fontFamily="sans-serif"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorGray"
+                            android:text="@string/email" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip" />
+
+                        <EditText
+                            android:id="@+id/input_email"
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"
+                            android:imeOptions="actionDone"
+                            android:hint=""
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textColor="@color/colorInput"
+                            android:background="@drawable/rounded_input_torquoise"
+                            android:padding="14dip"
+                            app:fontFamily="sans-serif"/>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorGray"
+                            android:text="@string/contact" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip" />
+
+                        <EditText
+                            android:id="@+id/input_contact"
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="phone"
+                            android:imeOptions="actionDone"
+                            android:hint=""
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textColor="@color/colorInput"
+                            android:background="@drawable/rounded_input_torquoise"
+                            android:padding="14dip"
+                            app:fontFamily="sans-serif"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorGray"
+                            android:text="@string/gender" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip" />
+
+                        <EditText
+                            android:id="@+id/input_gender"
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:imeOptions="actionNext"
+                            android:focusable="false"
+                            android:hint=""
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textColor="@color/colorInput"
+                            android:background="@drawable/rounded_input_torquoise"
+                            android:padding="14dip"
+                            app:fontFamily="sans-serif"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorGray"
+                            android:text="@string/dob" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip" />
+
+                        <EditText
+                            android:id="@+id/input_dob"
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:imeOptions="actionNext"
+                            android:focusable="false"
+                            android:hint=""
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textColor="@color/colorInput"
+                            android:background="@drawable/rounded_input_torquoise"
+                            android:padding="14dip"
+                            app:fontFamily="sans-serif"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:textColor="@color/colorGray"
+                            android:text="@string/nationality" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip" />
+
+                        <EditText
+                            android:id="@+id/input_nationality"
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:imeOptions="actionNext"
+                            android:focusable="false"
+                            android:hint=""
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textColor="@color/colorInput"
+                            android:background="@drawable/rounded_input_torquoise"
+                            android:padding="14dip"
+                            app:fontFamily="sans-serif"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorGray"
+                            android:text="@string/company_name" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip" />
+
+                        <EditText
+                            android:id="@+id/input_company_name"
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:imeOptions="actionNext"
+                            android:hint=""
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textColor="@color/colorInput"
+                            android:background="@drawable/rounded_input_torquoise"
+                            android:padding="14dip"
+                            app:fontFamily="sans-serif"/>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorGray"
+                            android:text="@string/job_title" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip" />
+
+                        <EditText
+                            android:id="@+id/input_job_title"
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:imeOptions="actionDone"
+                            android:hint=""
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textColor="@color/colorInput"
+                            android:background="@drawable/rounded_input_torquoise"
+                            android:padding="14dip"
+                            app:fontFamily="sans-serif"/>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:textColor="@color/colorGray"
+                            android:text="@string/id_type" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip" />
+
+                        <EditText
+                            android:id="@+id/input_id_type"
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:imeOptions="actionNext"
+                            android:focusable="false"
+                            android:hint=""
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textColor="@color/colorInput"
+                            android:background="@drawable/rounded_input_torquoise"
+                            android:padding="14dip"
+                            app:fontFamily="sans-serif"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <TextView
+                            android:fontFamily="@font/nbi_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorGray"
+                            android:text="@string/id_no" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip" />
+
+                        <EditText
+                            android:id="@+id/input_id_no"
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:imeOptions="actionDone"
+                            android:hint=""
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textColor="@color/colorInput"
+                            android:background="@drawable/rounded_input_torquoise"
+                            android:padding="14dip"
+                            app:fontFamily="sans-serif"/>
+
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dip"/>
+
+                        <TextView
+                            android:fontFamily="@font/nbi_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorGray"
+                            android:text="@string/passport_id_license_image_message" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dip" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/image_upload_passport"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:scaleType="fitCenter"
+                                    android:adjustViewBounds="true"
+                                    app:srcCompat="@drawable/default_photo"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/image_upload_passport"
+                                    android:paddingBottom="40dip"
+                                    android:gravity="center"
+                                    android:text="@string/tap_to_upload_photo"
+                                    android:textSize="14sp"
+                                    android:textColor="#979797"
+                                    app:fontFamily="sans-serif"/>
+                        </RelativeLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dip"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dip" />
+                </LinearLayout>
+        </ScrollView>
+</LinearLayout>

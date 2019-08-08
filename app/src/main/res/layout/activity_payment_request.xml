@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dip"
+            android:orientation="vertical">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_back"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/back_active"/>
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                        <TextView
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="30sp"
+                            android:textColor="@color/colorLightIndigo"
+                            android:text="@string/payment_request" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/image_qrcode"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/colorGray"
+                                    android:padding="1dip"
+                                    android:scaleType="fitCenter"
+                                    android:adjustViewBounds="true"/>
+
+                                <Space
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dip" />
+
+                                <TextView
+                                    android:id="@+id/text_address"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorTurquoise"
+                                    android:text="Address" />
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dip" />
+                        <Button
+                            android:id="@+id/button_copy_link"
+                            android:fontFamily="@font/nbi_b"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAllCaps="false"
+                            android:minWidth="200dip"
+                            android:padding="20dip"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorWhite"
+                            android:text="@string/copy_address"
+                            android:background="@drawable/rounded_indigo"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dip" />
+
+                </LinearLayout>
+        </ScrollView>
+</LinearLayout>

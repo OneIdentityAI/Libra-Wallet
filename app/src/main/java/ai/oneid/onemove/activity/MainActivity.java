@@ -128,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
         Log.e("Libra address", preferences.getString(getString(R.string.param_libra_wallet_address), ""));
-        retrieveBalance();
 
         delegate.createDirectoryIfNotExist(Environment.getExternalStorageDirectory().toString() + AppDelegate.appPath + AppDelegate.tempFolder);
         AutoPermissions.Companion.loadAllPermissions(this, 1);
@@ -269,6 +268,7 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onResume();
         SharedPreferences preferences = getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
+        retrieveBalance();
         textBalance.setText(AppDelegate.currencyFormat(preferences.getString(getResources().getString(R.string.param_libra_balance), "")));
     }
 
@@ -285,15 +285,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Log.e("Json", jsonObject.toString());
-        AsynRestClient.genericPost(this, AsynRestClient.libraRetrieveBalanceUrl, jsonObject.toString(), new AsyncHttpResponseHandler() {
+        AsynRestClient.genericPost(this, AsynRestClient.retrieveBalanceUrl + preferences.getString(getString(R.string.param_libra_wallet_address), ""), jsonObject.toString(), new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
-                progressDialog.show();
+                //progressDialog.show();
             }
 
             @Override
             public void onFinish() {
-                progressDialog.dismiss();
+                //progressDialog.dismiss();
             }
 
             @Override
@@ -302,11 +302,14 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Response", responseString);
                 try {
                     JSONObject jsonObject = new JSONObject(responseString);
-                    String balance = jsonObject.getString("balance");
+                    String balance = jsonObject.getString("result");
+                    double actualBalance = 0.0;
+                    if(!balance.equals(""))
+                        actualBalance = Double.parseDouble(balance)/1000000;
 
                     SharedPreferences preferences = getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString(getResources().getString(R.string.param_libra_balance), balance);
+                    editor.putString(getResources().getString(R.string.param_libra_balance), actualBalance + "");
                     editor.apply();
                 }
                 catch (JSONException e)

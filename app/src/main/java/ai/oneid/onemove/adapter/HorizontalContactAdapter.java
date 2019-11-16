@@ -1,6 +1,7 @@
 package ai.oneid.onemove.adapter;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,8 +61,9 @@ public class HorizontalContactAdapter extends RecyclerView.Adapter<RecyclerView.
                 }
                 catch (JSONException e)
                 {
-
+                    e.printStackTrace();
                 }
+                Log.e("Data", jsonArray.toString());
                 intent.putExtra("data", jsonArray.toString());
                 fragment.startActivity(intent);
             }

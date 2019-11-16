@@ -40,14 +40,14 @@
                     android:fontFamily="@font/nbi_b"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="38sp"
+                    android:textSize="30sp"
                     android:textColor="@color/colorLightIndigo"
                     android:text="0" />
                 <TextView
                     android:fontFamily="@font/nbi_b"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textColor="@color/colorTurquoise"
                     android:text="/ USD" />
             </LinearLayout>

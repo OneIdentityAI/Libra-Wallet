@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dip"
+            android:gravity="center"
+            android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_back"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/back_active"/>
+
+                <TextView
+                    android:fontFamily="@font/nbi_b"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:textColor="@color/colorLightIndigo"
+                    android:text="@string/verification_result" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"/>
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                                <ozaydin.serkan.com.image_zoom_view.ImageViewZoom
+                                    android:id="@+id/image_id"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="2"
+                                    android:scaleType="fitCenter"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/default_photo" />
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="wrap_content"/>
+                                <ozaydin.serkan.com.image_zoom_view.ImageViewZoom
+                                    android:id="@+id/image_selfie"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:scaleType="fitCenter"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/default_photo" />
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/overall_verification_result" />
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_overall_result"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/facial_similarity"
+                            android:textSize="16sp"
+                            android:textColor="#2196F3"
+                            app:fontFamily="sans-serif"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/match_result" />
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_face_match_result"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/match_score" />
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_face_match_score"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/match_image_type" />
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_face_match_image_type"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip"/>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/id_document_check"
+                            android:textSize="16sp"
+                            android:textColor="#2196F3"
+                            app:fontFamily="sans-serif"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                        <TextView
+                                            android:fontFamily="@font/nbi_light"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="16sp"
+                                            android:textColor="@color/colorBlack"
+                                            android:text="@string/name_check" />
+                                        <Space
+                                            android:layout_width="5dip"
+                                            android:layout_height="5dip" />
+                                        <TextView
+                                            android:id="@+id/text_name"
+                                            android:fontFamily="@font/nbi_light"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="14sp"
+                                            android:textColor="@color/colorGray"
+                                            android:text="Value" />
+                                </LinearLayout>
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_name_check"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dip"/>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                        <TextView
+                                            android:fontFamily="@font/nbi_light"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="16sp"
+                                            android:textColor="@color/colorBlack"
+                                            android:text="@string/id_no_check" />
+                                        <Space
+                                            android:layout_width="5dip"
+                                            android:layout_height="5dip" />
+                                        <TextView
+                                            android:id="@+id/text_id_no"
+                                            android:fontFamily="@font/nbi_light"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="14sp"
+                                            android:textColor="@color/colorGray"
+                                            android:text="Value" />
+                                </LinearLayout>
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_id_no_check"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/id_validity_check" />
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_id_validity_check"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <TextView
+                                    android:id="@+id/text_name4"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/gender_check" />
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_gender_check"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                        <TextView
+                                            android:fontFamily="@font/nbi_light"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="16sp"
+                                            android:textColor="@color/colorBlack"
+                                            android:text="@string/nationality_check" />
+                                        <Space
+                                            android:layout_width="5dip"
+                                            android:layout_height="5dip" />
+                                        <TextView
+                                            android:id="@+id/text_nationality"
+                                            android:fontFamily="@font/nbi_light"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="14sp"
+                                            android:textColor="@color/colorGray"
+                                            android:text="Value" />
+                                </LinearLayout>
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_nationality_check"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                        <TextView
+                                            android:fontFamily="@font/nbi_light"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="16sp"
+                                            android:textColor="@color/colorBlack"
+                                            android:text="@string/dob_check" />
+                                        <Space
+                                            android:layout_width="5dip"
+                                            android:layout_height="5dip" />
+                                        <TextView
+                                            android:id="@+id/text_dob"
+                                            android:fontFamily="@font/nbi_light"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="14sp"
+                                            android:textColor="@color/colorGray"
+                                            android:text="Value" />
+                                </LinearLayout>
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_dob_check"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/age_check" />
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_age_check"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sanction_check"
+                            android:textSize="16sp"
+                            android:textColor="#2196F3"
+                            app:fontFamily="sans-serif"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/sanction_is_sdn" />
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_sanction_is_sdn"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/sanction_sdn_source" />
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_sanction_sdn_source"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/sanction_sdn_ref" />
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_sanction_sdn_ref"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/sanction_search_type" />
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_sanction_search_type"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pep_check"
+                            android:textSize="16sp"
+                            android:textColor="#2196F3"
+                            app:fontFamily="sans-serif"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/pep_is_pep" />
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_pep_is_pep"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/pep_source" />
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_pep_source"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/pep_ref" />
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_pep_ref"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="Result" />
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                                <TextView
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="@string/created_on" />
+
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="10dip" />
+
+                                <TextView
+                                    android:id="@+id/text_created_on"
+                                    android:fontFamily="@font/nbi_light"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorIndigo"
+                                    android:text="YYYY-MM-DD HH:MM:SS" />
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dip"/>
+                </LinearLayout>
+        </ScrollView>
+</LinearLayout>

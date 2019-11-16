@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,10 +29,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 
 import ai.oneid.onemove.R;
 import ai.oneid.onemove.adapter.PaymentContactsAdapter;
@@ -286,15 +292,15 @@ public class SendPaymentActivity extends AppCompatActivity {
         adapter = new PaymentContactsAdapter(this);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        if(data == "")
-        {
-            recyclerView.setVisibility(View.VISIBLE);
-            inputAddress.setVisibility(View.GONE);
-        }
-        else
+        if(data.equals(""))
         {
             recyclerView.setVisibility(View.GONE);
             inputAddress.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            recyclerView.setVisibility(View.VISIBLE);
+            inputAddress.setVisibility(View.GONE);
         }
     }
 
@@ -483,7 +489,7 @@ public class SendPaymentActivity extends AppCompatActivity {
         });
     }
 
-    private void libraTransfer(String recipientAddress)
+    private void libraTransfer(final String recipientAddress)
     {
 
         final SharedPreferences preferences = getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
@@ -514,8 +520,22 @@ public class SendPaymentActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String responseString = new String(responseBody);
-                Log.e("Response", responseString);
-                createTransaction();
+                Log.e("Libra transfer", responseString);
+                try {
+                    JSONObject jsonObject = new JSONObject(responseString);
+                    if(jsonObject.has("error"))
+                    {
+                        JSONObject innerObject = jsonObject.getJSONObject("error");
+                        alert(innerObject.getString("type"), innerObject.getString("message"));
+                    }
+                    else {
+                        createTransaction(recipientAddress);
+                    }
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -528,7 +548,78 @@ public class SendPaymentActivity extends AppCompatActivity {
         });
     }
 
-    private void createTransaction()
+    public String getLocalIpAddress() {
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress()) {
+                        String ip = Formatter.formatIpAddress(inetAddress.hashCode());
+                        Log.i("OneMove", "***** IP="+ ip);
+                        return ip;
+                    }
+                }
+            }
+        } catch (SocketException ex) {
+            Log.e("OneMove", ex.toString());
+        }
+        return null;
+    }
+
+    private void fiatDepositTransactionLog(String transactionId, String recipientAddress)
+    {
+        SharedPreferences preferences = getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
+        String libraWalletAddress = preferences.getString(getResources().getString(R.string.param_libra_wallet_address), "");
+        String firstName = preferences.getString(getString(R.string.param_first_name), "");
+        String lastName = preferences.getString(getString(R.string.param_last_name), "");
+        String email = preferences.getString(getString(R.string.param_email), "");
+        String contact = preferences.getString(getString(R.string.param_contact), "");
+        String gender = preferences.getString(getString(R.string.param_oneid_gender), "");
+        String dob = preferences.getString(getString(R.string.param_oneid_dob), "");
+        String nationality = preferences.getString(getString(R.string.param_oneid_nationality), "");
+        String companyName = preferences.getString(getString(R.string.param_oneid_company_name), "");
+        String jobTitle = preferences.getString(getString(R.string.param_oneid_job_title), "");
+        String idType = preferences.getString(getString(R.string.param_oneid_id_type_name), "");
+        String idNo = preferences.getString(getString(R.string.param_oneid_id_no), "");
+        String selfie = preferences.getString(getString(R.string.param_oneid_selfie), "");
+        String credDefId = preferences.getString(getResources().getString(R.string.param_oneid_credential), "");
+
+        TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        String countryCode = telephonyManager.getSimCountryIso();
+
+        String documentType = "";
+
+        AsynRestClient.fiatDeportTransactionLog(transactionId, preferences.getString(getString(R.string.param_libra_wallet_address), ""), recipientAddress, inputAmountLeft.getText().toString() + "." + inputAmountRight.getText().toString(), getLocalIpAddress(),
+                new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onStart() {
+                        progressDialog.show();
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        progressDialog.dismiss();
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        String responseString = new String(responseBody);
+                        Log.e("Response", responseString);
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                        // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                        String responseString = new String(errorResponse);
+                        Log.e("Response", responseString);
+                        alert(getString(R.string.error), getString(R.string.error_please_try_again));
+                        Log.e("Helo", "Hello");
+                    }
+                });
+    }
+
+    private void createTransaction(final String recipientAddress)
     {
         final SharedPreferences preferences = getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
         JSONArray jsonArray = new JSONArray();
@@ -567,27 +658,44 @@ public class SendPaymentActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String responseString = new String(responseBody);
-                Log.e("Response", responseString);
-                retrieveBalance();
-                alert("", getString(R.string.success_payment_transfer));
+                try {
+                    JSONObject jsonObject = new JSONObject(responseString);
+                    if(jsonObject.has("error"))
+                    {
+                        JSONObject innerObject = jsonObject.getJSONObject("error");
+                        alert(innerObject.getString("type"), innerObject.getString("message"));
+                    }
+                    else {
+                        String transactionId = jsonObject.getString("transaction_id");
+                        fiatDepositTransactionLog(transactionId, recipientAddress);
 
-                SharedPreferences preferences = getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
-                String lastTransferredDate = preferences.getString(getString(R.string.param_last_transferred_date), "");
-                String lastTransferredAmount = preferences.getString(getString(R.string.param_last_transferred_amount), "");
+                        Log.e("Response", responseString);
+                        retrieveBalance();
+                        alert("", getString(R.string.success_payment_transfer));
 
-                Date cDate = new Date();
-                String fDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
-                SharedPreferences.Editor editor = preferences.edit();
-                if(lastTransferredDate.equals("") || (!lastTransferredDate.equals("") && !lastTransferredDate.equals(fDate))) {
-                    editor.putString(getResources().getString(R.string.param_last_transferred_date), fDate);
-                    editor.putString(getResources().getString(R.string.param_last_transferred_amount), inputAmountLeft.getText().toString() + "." + inputAmountRight.getText().toString());
+                        SharedPreferences preferences = getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
+                        String lastTransferredDate = preferences.getString(getString(R.string.param_last_transferred_date), "");
+                        String lastTransferredAmount = preferences.getString(getString(R.string.param_last_transferred_amount), "");
+
+                        Date cDate = new Date();
+                        String fDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        if(lastTransferredDate.equals("") || (!lastTransferredDate.equals("") && !lastTransferredDate.equals(fDate))) {
+                            editor.putString(getResources().getString(R.string.param_last_transferred_date), fDate);
+                            editor.putString(getResources().getString(R.string.param_last_transferred_amount), inputAmountLeft.getText().toString() + "." + inputAmountRight.getText().toString());
+                        }
+                        else
+                        {
+                            float totalAmount = Float.parseFloat(lastTransferredAmount) + Float.parseFloat(inputAmountLeft.getText().toString() + "." + inputAmountRight.getText().toString());
+                            editor.putString(getResources().getString(R.string.param_last_transferred_amount), totalAmount + "");
+                        }
+                        editor.apply();
+                    }
                 }
-                else
+                catch(Exception e)
                 {
-                    float totalAmount = Float.parseFloat(lastTransferredAmount) + Float.parseFloat(inputAmountLeft.getText().toString() + "." + inputAmountRight.getText().toString());
-                    editor.putString(getResources().getString(R.string.param_last_transferred_amount), totalAmount + "");
+                    e.printStackTrace();
                 }
-                editor.apply();
             }
 
             @Override
@@ -613,7 +721,7 @@ public class SendPaymentActivity extends AppCompatActivity {
         }
 
         Log.e("Json", jsonObject.toString());
-        AsynRestClient.genericPost(this, AsynRestClient.libraRetrieveBalanceUrl, jsonObject.toString(), new AsyncHttpResponseHandler() {
+        AsynRestClient.genericPost(this, AsynRestClient.retrieveBalanceUrl + preferences.getString(getString(R.string.param_libra_wallet_address), ""), jsonObject.toString(), new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
                 progressDialog.show();
@@ -630,11 +738,14 @@ public class SendPaymentActivity extends AppCompatActivity {
                 Log.e("Response", responseString);
                 try {
                     JSONObject jsonObject = new JSONObject(responseString);
-                    String balance = jsonObject.getString("balance");
+                    String balance = jsonObject.getString("result");
+                    double actualBalance = 0.0;
+                    if(!balance.equals(""))
+                        actualBalance = Double.parseDouble(balance)/1000000;
 
                     SharedPreferences preferences = getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString(getResources().getString(R.string.param_libra_balance), balance);
+                    editor.putString(getResources().getString(R.string.param_libra_balance), actualBalance + "");
                     editor.apply();
                     textBalance.setText(AppDelegate.currencyFormat(preferences.getString(getString(R.string.param_libra_balance), "")));
                 }
@@ -648,8 +759,8 @@ public class SendPaymentActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
                 Log.e("Helo", "Hello");
-                String responseString = new String(errorResponse);
-                Log.e("Response", responseString);
+                //String responseString = new String(errorResponse);
+                //Log.e("Response", responseString);
             }
         });
     }

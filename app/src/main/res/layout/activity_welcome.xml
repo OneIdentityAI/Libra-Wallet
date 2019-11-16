@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:textAllCaps="false"
                     android:minWidth="200dip"
-                    android:padding="20dip"
+                    android:padding="16dip"
                     android:textSize="16sp"
                     android:textColor="@color/colorWhite"
                     android:text="@string/welcome_button_1"

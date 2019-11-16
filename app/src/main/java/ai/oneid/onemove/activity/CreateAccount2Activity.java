@@ -33,13 +33,6 @@ public class CreateAccount2Activity extends AppCompatActivity {
     public EditText inputEmail;
     public EditText inputContact;
     public EditText inputPassword;
-//    public EditText inputReferralCode;
-//    public LinearLayout layoutReferralCode;
-//    public AppCompatImageView imageSwitch;
-//    public boolean haveReferralCode = false;
-    public LinearLayout layoutPasswordStrenght1;
-    public LinearLayout layoutPasswordStrenght2;
-    public LinearLayout layoutPasswordStrenght3;
     public Button buttonContinue;
     public ProgressDialog progressDialog;
 
@@ -62,43 +55,6 @@ public class CreateAccount2Activity extends AppCompatActivity {
         inputContact = findViewById(R.id.input_contact);
         inputContact.setText(delegate.getCountryZipCode() + "");
         inputPassword = findViewById(R.id.input_password);
-        inputPassword.addTextChangedListener(new TextWatcher()
-        {
-            @Override
-            public void afterTextChanged(Editable s) {}
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (AppDelegate.PasswordStrength.calculatePasswordStrength(inputPassword.getText().toString()).getValue() == AppDelegate.PasswordStrength.WEAK.getValue())
-                {
-                    layoutPasswordStrenght1.setBackgroundResource(R.drawable.rounded_password_highlight);
-                    layoutPasswordStrenght2.setBackgroundResource(R.drawable.rounded_password_unhighlight);
-                    layoutPasswordStrenght3.setBackgroundResource(R.drawable.rounded_password_unhighlight);
-                }
-                else if (AppDelegate.PasswordStrength.calculatePasswordStrength(inputPassword.getText().toString()).getValue() == AppDelegate.PasswordStrength.MEDIUM.getValue())
-                {
-                    layoutPasswordStrenght1.setBackgroundResource(R.drawable.rounded_password_highlight);
-                    layoutPasswordStrenght2.setBackgroundResource(R.drawable.rounded_password_highlight);
-                    layoutPasswordStrenght3.setBackgroundResource(R.drawable.rounded_password_unhighlight);
-                }
-                else if (AppDelegate.PasswordStrength.calculatePasswordStrength(inputPassword.getText().toString()).getValue() >= AppDelegate.PasswordStrength.STRONG.getValue())
-                {
-                    layoutPasswordStrenght1.setBackgroundResource(R.drawable.rounded_password_highlight);
-                    layoutPasswordStrenght2.setBackgroundResource(R.drawable.rounded_password_highlight);
-                    layoutPasswordStrenght3.setBackgroundResource(R.drawable.rounded_password_highlight);
-                }
-                else
-                {
-                    layoutPasswordStrenght1.setBackgroundResource(R.drawable.rounded_password_unhighlight);
-                    layoutPasswordStrenght2.setBackgroundResource(R.drawable.rounded_password_unhighlight);
-                    layoutPasswordStrenght3.setBackgroundResource(R.drawable.rounded_password_unhighlight);
-                }
-            }
-        });
 //        imageSwitch = findViewById(R.id.image_switch);
 //        imageSwitch.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -118,9 +74,6 @@ public class CreateAccount2Activity extends AppCompatActivity {
 //        });
 //        layoutReferralCode = findViewById(R.id.layout_referral_code);
 //        inputReferralCode = findViewById(R.id.input_referral_code);
-        layoutPasswordStrenght1 = findViewById(R.id.layout_password_strenght_1);
-        layoutPasswordStrenght2 = findViewById(R.id.layout_password_strenght_2);
-        layoutPasswordStrenght3 = findViewById(R.id.layout_password_strenght_3);
         buttonContinue = findViewById(R.id.button_continue);
         buttonContinue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,13 +93,9 @@ public class CreateAccount2Activity extends AppCompatActivity {
                 {
                     inputPassword.setError(getString(R.string.error_required_field));
                 }
-                if(AppDelegate.PasswordStrength.calculatePasswordStrength(inputPassword.getText().toString()).getValue() < AppDelegate.PasswordStrength.STRONG.getValue())
-                {
-                    inputPassword.setError(getString(R.string.password_message));
-                }
 
                 if(!inputEmail.getText().toString().equals("") && android.util.Patterns.EMAIL_ADDRESS.matcher(inputEmail.getText().toString()).matches() && !inputContact.getText().toString().equals("") &&
-                        !inputPassword.getText().toString().equals("") && AppDelegate.PasswordStrength.calculatePasswordStrength(inputPassword.getText().toString()).getValue() >= AppDelegate.PasswordStrength.STRONG.getValue())
+                        !inputPassword.getText().toString().equals(""))
                 {
                     SharedPreferences preferences = getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
@@ -217,8 +166,8 @@ public class CreateAccount2Activity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                String responseString = new String(errorResponse);
-                Log.e("Response", responseString);
+                //String responseString = new String(errorResponse);
+                //Log.e("Response", responseString);
                 alert(getString(R.string.error), getString(R.string.error_please_try_again));
                 Log.e("Helo", "Hello");
             }

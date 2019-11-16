@@ -64,6 +64,7 @@
     <string name="drawer_open">Drawer open</string>
     <string name="drawer_close">Drawer close</string>
     <string name="send_money_to">Send money to</string>
+    <string name="send_payment">Send Payment</string>
     <string name="recent">Recent</string>
     <string name="overview">Overview</string>
     <string name="transactions">Transactions</string>
@@ -75,6 +76,8 @@
     <string name="view_wallet_address">Tap to View Wallet Address</string>
     <string name="this_month">This month</string>
     <string name="payment_request">Payment Request</string>
+    <string name="payment_detail">Payment Detail</string>
+    <string name="verification_result">Verification Result</string>
     <string name="copy_address">Copy Address</string>
     <string name="wallet_address_copied">Wallet address copied</string>
     <string name="expense">Expense</string>
@@ -101,13 +104,38 @@
     <string name="company_name">Company Name</string>
     <string name="id_type">ID Type</string>
     <string name="selfie_message">Selfie image will be automatically captured after you have performed the liveness verification to match with the photo of your passport\n\nPlease ensure you have upload a clear copy of your passport image\n\nDuring the process, we will ask you to perform action to confirm you are real person\n\nThe process will take less than 10 seconds if done correctly. Else you will need to repeat the process</string>
-    <string name="passport_id_license_image_message">"Upload a clear and legible picture of your passport / identity card / driving license front page</string>
+    <string name="passport_id_license_image_message">"Upload a clear and legible picture of your passport / identity card (Malaysia or Indonesia only for the moment) front page</string>
     <string name="account_detail">Your account details are listed below. For security reasons, some of these details are hidden</string>
     <string name="tap_to_upload_photo">Tap here to upload your photo</string>
     <string name="create_identty">Create identity</string>
-    <string name="automatic_verification">Autmatic Verification</string>
+    <string name="automatic_verification">Automatic Verification</string>
     <string name="success">Success</string>
     <string name="success_identity_credential">Congratulation. You have now obtained your identity credential. You can now connect with other Entity.</string>
+    <string name="credential_existed_message">For demo purpose, you can re-perform the verification again.</string>
+    <string name="created_on">Verified On</string>
+    <string name="facial_similarity">Facial Similarity Match</string>
+    <string name="match_result">Result</string>
+    <string name="match_score">Score</string>
+    <string name="match_image_type">Image Type</string>
+    <string name="name_check">Name Check</string>
+    <string name="id_no_check">ID No Check</string>
+    <string name="id_validity_check">ID Validity Check</string>
+    <string name="gender_check">Gender Check</string>
+    <string name="nationality_check">Nationality Check</string>
+    <string name="dob_check">DOB Check</string>
+    <string name="age_check">Age Check</string>
+    <string name="sanction_check">Sanction Check</string>
+    <string name="sanction_is_sdn">Is SDN</string>
+    <string name="sanction_sdn_source">SDN Source</string>
+    <string name="sanction_sdn_ref">SDN Ref</string>
+    <string name="sanction_search_type">Search Type</string>
+    <string name="pep_check">PEP Check</string>
+    <string name="pep_is_pep">Is PEP</string>
+    <string name="pep_source">PEP Source</string>
+    <string name="pep_ref">PEP Ref</string>
+    <string name="id_document_check">ID Document Check</string>
+    <string name="overall_verification_result">Overall Verification Result</string>
+    <string name="fail">Fail</string>
 
 
     <string name="error">Error</string>

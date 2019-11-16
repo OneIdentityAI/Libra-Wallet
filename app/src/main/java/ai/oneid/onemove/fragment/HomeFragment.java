@@ -181,7 +181,7 @@ public class HomeFragment extends Fragment
         SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("id", preferences.getString(getString(R.string.param_utility_user_id), ""));
+            jsonObject.put("id", preferences.getString(getString(R.string.param_libra_wallet_address), ""));
             jsonObject.put("search", "");
         }
         catch (Exception e)

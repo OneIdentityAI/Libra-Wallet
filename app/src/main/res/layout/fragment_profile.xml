@@ -10,6 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dip"
+            android:gravity="center"
             android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/image_side_menu"
@@ -19,10 +20,21 @@
                     android:adjustViewBounds="true"
                     android:src="@drawable/navigation_active"/>
 
-                <Space
+                <TextView
+                    android:fontFamily="@font/nbi_b"
                     android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:textColor="@color/colorLightIndigo"
+                    android:text="@string/profile" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dip"
                     android:layout_height="30dip"
-                    android:layout_weight="1"/>
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"/>
         </LinearLayout>
         <ScrollView
             android:layout_width="match_parent"
@@ -35,19 +47,6 @@
                     android:layout_marginRight="20dip"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
-
-                        <TextView
-                            android:fontFamily="@font/nbi_b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="30sp"
-                            android:textColor="@color/colorLightIndigo"
-                            android:text="@string/profile" />
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dip" />
-
                         <LinearLayout
                             android:id="@+id/layout_complete_profile_section"
                             android:layout_width="match_parent"
@@ -119,11 +118,22 @@
                             android:adjustViewBounds="true"
                             android:src="@drawable/default_user"/>
 
+                        <TextView
+                            android:id="@+id/text_information"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/image_upload_id"
+                            android:padding="4dip"
+                            android:gravity="center"
+                            android:text="@string/credential_existed_message"
+                            android:textSize="16sp"
+                            android:textColor="#2196F3"
+                            app:fontFamily="sans-serif"/>
+
                         <LinearLayout
                             android:id="@+id/layout_hidden_2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:visibility="gone"
                             android:orientation="vertical">
                                 <Space
                                     android:layout_width="wrap_content"
@@ -157,71 +167,86 @@
 
                         <Space
                             android:layout_width="wrap_content"
-                            android:layout_height="30dip" />
-
-                        <TextView
-                            android:fontFamily="@font/nbi_light"
+                            android:layout_height="20dip" />
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textColor="@color/colorGray"
-                            android:text="@string/first_name" />
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal"
+                                    android:orientation="vertical">
+                                        <TextView
+                                            android:fontFamily="@font/nbi_light"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="16sp"
+                                            android:textColor="@color/colorGray"
+                                            android:text="@string/first_name" />
+
+                                        <Space
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="10dip" />
+
+                                        <EditText
+                                            android:id="@+id/input_first_name"
+                                            android:fontFamily="@font/nbi_b"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:inputType="text"
+                                            android:imeOptions="actionNext"
+                                            android:hint=""
+                                            android:text=""
+                                            android:textSize="16sp"
+                                            android:textColor="@color/colorInput"
+                                            android:background="@drawable/rounded_input_torquoise"
+                                            android:padding="10dip"
+                                            app:fontFamily="sans-serif"/>
+                                </LinearLayout>
+                                <Space
+                                    android:layout_width="10dip"
+                                    android:layout_height="0dip" />
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal"
+                                    android:orientation="vertical">
+                                        <TextView
+                                            android:fontFamily="@font/nbi_light"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="16sp"
+                                            android:textColor="@color/colorGray"
+                                            android:text="@string/last_name" />
+
+                                        <Space
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="10dip" />
+
+                                        <EditText
+                                            android:id="@+id/input_last_name"
+                                            android:fontFamily="@font/nbi_b"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:inputType="text"
+                                            android:imeOptions="actionDone"
+                                            android:hint=""
+                                            android:text=""
+                                            android:textSize="16sp"
+                                            android:textColor="@color/colorInput"
+                                            android:background="@drawable/rounded_input_torquoise"
+                                            android:padding="10dip"
+                                            app:fontFamily="sans-serif"/>
+                                </LinearLayout>
+                        </LinearLayout>
 
                         <Space
                             android:layout_width="wrap_content"
-                            android:layout_height="10dip" />
-
-                        <EditText
-                            android:id="@+id/input_first_name"
-                            android:fontFamily="@font/nbi_b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:focusable="false"
-                            android:inputType="text"
-                            android:imeOptions="actionNext"
-                            android:hint=""
-                            android:text=""
-                            android:textSize="16sp"
-                            android:textColor="@color/colorInput"
-                            android:background="@drawable/rounded_input_torquoise"
-                            android:padding="14dip"
-                            app:fontFamily="sans-serif"/>
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dip" />
-
-                        <TextView
-                            android:fontFamily="@font/nbi_light"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textColor="@color/colorGray"
-                            android:text="@string/last_name" />
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="10dip" />
-
-                        <EditText
-                            android:id="@+id/input_last_name"
-                            android:fontFamily="@font/nbi_b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:focusable="false"
-                            android:inputType="text"
-                            android:imeOptions="actionNext"
-                            android:hint=""
-                            android:text=""
-                            android:textSize="16sp"
-                            android:textColor="@color/colorInput"
-                            android:background="@drawable/rounded_input_torquoise"
-                            android:padding="14dip"
-                            app:fontFamily="sans-serif"/>
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dip" />
+                            android:layout_height="20dip" />
 
                         <TextView
                             android:fontFamily="@font/nbi_light"
@@ -248,11 +273,11 @@
                             android:textSize="16sp"
                             android:textColor="@color/colorInput"
                             android:background="@drawable/rounded_input_torquoise"
-                            android:padding="14dip"
+                            android:padding="10dip"
                             app:fontFamily="sans-serif"/>
                         <Space
                             android:layout_width="wrap_content"
-                            android:layout_height="30dip" />
+                            android:layout_height="20dip" />
 
                         <TextView
                             android:fontFamily="@font/nbi_light"
@@ -278,205 +303,181 @@
                             android:textSize="16sp"
                             android:textColor="@color/colorInput"
                             android:background="@drawable/rounded_input_torquoise"
-                            android:padding="14dip"
+                            android:padding="10dip"
                             app:fontFamily="sans-serif"/>
 
                         <Space
                             android:layout_width="wrap_content"
-                            android:layout_height="30dip" />
+                            android:layout_height="20dip" />
 
                         <LinearLayout
                             android:id="@+id/layout_hidden_3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
-                                <TextView
-                                    android:fontFamily="@font/nbi_light"
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/colorGray"
-                                    android:text="@string/gender" />
+                                    android:gravity="center_horizontal"
+                                    android:orientation="horizontal">
+                                        <LinearLayout
+                                            android:layout_width="0dip"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:gravity="center_horizontal"
+                                            android:orientation="vertical">
+                                                <TextView
+                                                    android:fontFamily="@font/nbi_light"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:textSize="16sp"
+                                                    android:textColor="@color/colorGray"
+                                                    android:text="@string/gender" />
+
+                                                <Space
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="10dip" />
+
+                                                <EditText
+                                                    android:id="@+id/input_gender"
+                                                    android:fontFamily="@font/nbi_b"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:inputType="text"
+                                                    android:imeOptions="actionNext"
+                                                    android:focusable="false"
+                                                    android:hint=""
+                                                    android:text=""
+                                                    android:textSize="16sp"
+                                                    android:textColor="@color/colorInput"
+                                                    android:background="@drawable/rounded_input_torquoise"
+                                                    android:padding="10dip"
+                                                    app:fontFamily="sans-serif"/>
+                                        </LinearLayout>
+                                        <Space
+                                            android:layout_width="10dip"
+                                            android:layout_height="0dip" />
+                                        <LinearLayout
+                                            android:layout_width="0dip"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:gravity="center_horizontal"
+                                            android:orientation="vertical">
+                                                <TextView
+                                                    android:fontFamily="@font/nbi_light"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:textSize="16sp"
+                                                    android:textColor="@color/colorGray"
+                                                    android:text="@string/dob" />
+
+                                                <Space
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="10dip" />
+
+                                                <EditText
+                                                    android:id="@+id/input_dob"
+                                                    android:fontFamily="@font/nbi_b"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:inputType="text"
+                                                    android:imeOptions="actionNext"
+                                                    android:focusable="false"
+                                                    android:hint=""
+                                                    android:text=""
+                                                    android:textSize="16sp"
+                                                    android:textColor="@color/colorInput"
+                                                    android:background="@drawable/rounded_input_torquoise"
+                                                    android:padding="10dip"
+                                                    app:fontFamily="sans-serif"/>
+                                        </LinearLayout>
+                                </LinearLayout>
 
                                 <Space
                                     android:layout_width="wrap_content"
-                                    android:layout_height="10dip" />
+                                    android:layout_height="20dip" />
 
-                                <EditText
-                                    android:id="@+id/input_gender"
-                                    android:fontFamily="@font/nbi_b"
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:inputType="text"
-                                    android:imeOptions="actionNext"
-                                    android:focusable="false"
-                                    android:hint=""
-                                    android:text=""
-                                    android:textSize="16sp"
-                                    android:textColor="@color/colorInput"
-                                    android:background="@drawable/rounded_input_torquoise"
-                                    android:padding="14dip"
-                                    app:fontFamily="sans-serif"/>
+                                    android:gravity="center_horizontal"
+                                    android:orientation="horizontal">
+                                        <LinearLayout
+                                            android:layout_width="0dip"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:gravity="center_horizontal"
+                                            android:orientation="vertical">
+                                                <TextView
+                                                    android:fontFamily="@font/nbi_light"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:textSize="18sp"
+                                                    android:textColor="@color/colorGray"
+                                                    android:text="@string/nationality" />
+
+                                                <Space
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="10dip" />
+
+                                                <EditText
+                                                    android:id="@+id/input_nationality"
+                                                    android:fontFamily="@font/nbi_b"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:inputType="text"
+                                                    android:imeOptions="actionNext"
+                                                    android:focusable="false"
+                                                    android:hint=""
+                                                    android:text=""
+                                                    android:textSize="16sp"
+                                                    android:textColor="@color/colorInput"
+                                                    android:background="@drawable/rounded_input_torquoise"
+                                                    android:padding="10dip"
+                                                    app:fontFamily="sans-serif"/>
+                                        </LinearLayout>
+                                        <Space
+                                            android:layout_width="10dip"
+                                            android:layout_height="0dip" />
+                                        <LinearLayout
+                                            android:layout_width="0dip"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:gravity="center_horizontal"
+                                            android:orientation="vertical">
+                                                <TextView
+                                                    android:fontFamily="@font/nbi_light"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:textSize="18sp"
+                                                    android:textColor="@color/colorGray"
+                                                    android:text="@string/id_type" />
+
+                                                <Space
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="10dip" />
+
+                                                <EditText
+                                                    android:id="@+id/input_id_type"
+                                                    android:fontFamily="@font/nbi_b"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:inputType="text"
+                                                    android:imeOptions="actionNext"
+                                                    android:focusable="false"
+                                                    android:hint=""
+                                                    android:text=""
+                                                    android:textSize="16sp"
+                                                    android:textColor="@color/colorInput"
+                                                    android:background="@drawable/rounded_input_torquoise"
+                                                    android:padding="10dip"
+                                                    app:fontFamily="sans-serif"/>
+                                        </LinearLayout>
+                                </LinearLayout>
 
                                 <Space
                                     android:layout_width="wrap_content"
-                                    android:layout_height="30dip" />
-
-                                <TextView
-                                    android:fontFamily="@font/nbi_light"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/colorGray"
-                                    android:text="@string/dob" />
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="10dip" />
-
-                                <EditText
-                                    android:id="@+id/input_dob"
-                                    android:fontFamily="@font/nbi_b"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:inputType="text"
-                                    android:imeOptions="actionNext"
-                                    android:focusable="false"
-                                    android:hint=""
-                                    android:text=""
-                                    android:textSize="16sp"
-                                    android:textColor="@color/colorInput"
-                                    android:background="@drawable/rounded_input_torquoise"
-                                    android:padding="14dip"
-                                    app:fontFamily="sans-serif"/>
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="30dip" />
-
-                                <TextView
-                                    android:fontFamily="@font/nbi_light"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="18sp"
-                                    android:textColor="@color/colorGray"
-                                    android:text="@string/nationality" />
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="10dip" />
-
-                                <EditText
-                                    android:id="@+id/input_nationality"
-                                    android:fontFamily="@font/nbi_b"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:inputType="text"
-                                    android:imeOptions="actionNext"
-                                    android:focusable="false"
-                                    android:hint=""
-                                    android:text=""
-                                    android:textSize="16sp"
-                                    android:textColor="@color/colorInput"
-                                    android:background="@drawable/rounded_input_torquoise"
-                                    android:padding="14dip"
-                                    app:fontFamily="sans-serif"/>
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="30dip" />
-
-                                <TextView
-                                    android:fontFamily="@font/nbi_light"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/colorGray"
-                                    android:text="@string/company_name" />
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="10dip" />
-
-                                <EditText
-                                    android:id="@+id/input_company_name"
-                                    android:fontFamily="@font/nbi_b"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:inputType="text"
-                                    android:imeOptions="actionNext"
-                                    android:hint=""
-                                    android:text=""
-                                    android:textSize="16sp"
-                                    android:textColor="@color/colorInput"
-                                    android:background="@drawable/rounded_input_torquoise"
-                                    android:padding="14dip"
-                                    app:fontFamily="sans-serif"/>
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="30dip" />
-
-                                <TextView
-                                    android:fontFamily="@font/nbi_light"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/colorGray"
-                                    android:text="@string/job_title" />
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="10dip" />
-
-                                <EditText
-                                    android:id="@+id/input_job_title"
-                                    android:fontFamily="@font/nbi_b"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:inputType="text"
-                                    android:imeOptions="actionDone"
-                                    android:hint=""
-                                    android:text=""
-                                    android:textSize="16sp"
-                                    android:textColor="@color/colorInput"
-                                    android:background="@drawable/rounded_input_torquoise"
-                                    android:padding="14dip"
-                                    app:fontFamily="sans-serif"/>
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="30dip" />
-
-                                <TextView
-                                    android:fontFamily="@font/nbi_light"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="18sp"
-                                    android:textColor="@color/colorGray"
-                                    android:text="@string/id_type" />
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="10dip" />
-
-                                <EditText
-                                    android:id="@+id/input_id_type"
-                                    android:fontFamily="@font/nbi_b"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:inputType="text"
-                                    android:imeOptions="actionNext"
-                                    android:focusable="false"
-                                    android:hint=""
-                                    android:text=""
-                                    android:textSize="16sp"
-                                    android:textColor="@color/colorInput"
-                                    android:background="@drawable/rounded_input_torquoise"
-                                    android:padding="14dip"
-                                    app:fontFamily="sans-serif"/>
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="30dip" />
+                                    android:layout_height="20dip" />
 
                                 <TextView
                                     android:fontFamily="@font/nbi_light"
@@ -502,7 +503,7 @@
                                     android:textSize="16sp"
                                     android:textColor="@color/colorInput"
                                     android:background="@drawable/rounded_input_torquoise"
-                                    android:padding="14dip"
+                                    android:padding="10dip"
                                     app:fontFamily="sans-serif"/>
 
 
@@ -544,45 +545,6 @@
                                             app:fontFamily="sans-serif"/>
                                 </RelativeLayout>
 
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="20dip"/>
-
-                                <TextView
-                                    android:fontFamily="@font/nbi_light"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/colorGray"
-                                    android:text="@string/proof_of_address_message" />
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="20dip" />
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-                                        <androidx.appcompat.widget.AppCompatImageView
-                                            android:id="@+id/image_upload_address"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:scaleType="fitCenter"
-                                            android:adjustViewBounds="true"
-                                            app:srcCompat="@drawable/default_photo"/>
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignBottom="@+id/image_upload_address"
-                                            android:paddingBottom="40dip"
-                                            android:gravity="center"
-                                            android:text="@string/tap_to_upload_photo"
-                                            android:textSize="14sp"
-                                            android:textColor="#979797"
-                                            app:fontFamily="sans-serif"/>
-                                </RelativeLayout>
-
                                 <Space
                                     android:layout_width="wrap_content"
                                     android:layout_height="40dip" />
@@ -594,12 +556,28 @@
                                     android:layout_height="wrap_content"
                                     android:textAllCaps="false"
                                     android:minWidth="200dip"
-                                    android:padding="20dip"
+                                    android:padding="16dip"
                                     android:textSize="16sp"
                                     android:textColor="@color/colorWhite"
                                     android:text="@string/create_identty"
                                     android:background="@drawable/rounded_indigo"/>
 
+                                <Space
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dip" />
+
+                                <Button
+                                    android:id="@+id/button_verification_result"
+                                    android:fontFamily="@font/nbi_b"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textAllCaps="false"
+                                    android:minWidth="200dip"
+                                    android:padding="16dip"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/colorWhite"
+                                    android:text="@string/verification_result"
+                                    android:background="@drawable/rounded_indigo"/>
                         </LinearLayout>
 
                         <Space

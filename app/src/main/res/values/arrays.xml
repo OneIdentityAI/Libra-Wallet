@@ -3,13 +3,11 @@
     <array name="id_type">
         <item>passport</item>
         <item>id</item>
-        <item>license</item>
     </array>
 
     <array name="id_type_name">
         <item>Passport</item>
         <item>Identity Card</item>
-        <item>Driving License</item>
     </array>
 
     <array name="gender">

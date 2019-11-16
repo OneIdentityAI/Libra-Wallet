@@ -42,7 +42,7 @@ public class AppDelegate extends MultiDexApplication {
 
     public static String appPath = "/OneMove";
     public static String tempFolder = "/tempFolder";
-    public static String apikey = "9c24abc8797a4554a54f3c6c26c705d9";
+    public static String apikey = "9f7b7a7ab2f65627c0dad91a8b7caf64";
     public static String credDefIdOneIdentity = "8CXxwinErn2oJiUt3XyKix:3:CL:182:TAG1";
 
     public AppDelegate() {
@@ -216,112 +216,6 @@ public class AppDelegate extends MultiDexApplication {
         }
 
         return json.toString();
-    }
-
-    public enum PasswordStrength
-    {
-        WEAK(0, Color.RED), MEDIUM(1, Color.argb(255, 220, 185, 0)), STRONG(2, Color.GREEN), VERY_STRONG(3, Color.BLUE);
-
-        //--------REQUIREMENTS--------
-        static int REQUIRED_LENGTH = 8;
-        static int MAXIMUM_LENGTH = 100;
-        static boolean REQUIRE_SPECIAL_CHARACTERS = false;
-        static boolean REQUIRE_DIGITS = true;
-        static boolean REQUIRE_LOWER_CASE = true;
-        static boolean REQUIRE_UPPER_CASE = true;
-
-        int resId;
-        int color;
-
-        PasswordStrength(int resId, int color)
-        {
-            this.resId = resId;
-            this.color = color;
-        }
-
-        public int getValue()
-        {
-            return resId;
-        }
-
-        public int getColor()
-        {
-            return color;
-        }
-
-        public static PasswordStrength calculatePasswordStrength(String password)
-        {
-            int currentScore = 0;
-            boolean sawUpper = false;
-            boolean sawLower = false;
-            boolean sawDigit = false;
-            boolean sawSpecial = false;
-
-            for (int i = 0; i < password.length(); i++)
-            {
-                char c = password.charAt(i);
-                if (!sawSpecial && !Character.isLetterOrDigit(c))
-                {
-                    currentScore += 1;
-                    sawSpecial = true;
-                }
-                else
-                {
-                    if (!sawDigit && Character.isDigit(c))
-                    {
-                        currentScore += 1;
-                        sawDigit = true;
-                    }
-                    else
-                    {
-                        if (!sawUpper || !sawLower)
-                        {
-                            if (Character.isUpperCase(c))
-                                sawUpper = true;
-                            else
-                                sawLower = true;
-                            if (sawUpper && sawLower)
-                                currentScore += 1;
-                        }
-                    }
-                }
-            }
-
-            if (password.length() > REQUIRED_LENGTH)
-            {
-                if ((REQUIRE_SPECIAL_CHARACTERS && !sawSpecial) || (REQUIRE_UPPER_CASE && !sawUpper) || (REQUIRE_LOWER_CASE && !sawLower) || (REQUIRE_DIGITS && !sawDigit))
-                {
-                    currentScore = 1;
-                }
-                else
-                {
-                    currentScore = 2;
-                    if (password.length() > MAXIMUM_LENGTH)
-                    {
-                        currentScore = 3;
-                    }
-                }
-            }
-            else
-            {
-                currentScore = 0;
-            }
-
-            switch (currentScore)
-            {
-                case 0:
-                    return WEAK;
-                case 1:
-                    return MEDIUM;
-                case 2:
-                    return STRONG;
-                case 3:
-                    return VERY_STRONG;
-                default:
-            }
-
-            return VERY_STRONG;
-        }
     }
 
     public static Bitmap encodeStringAsQRBitmap(String str) throws WriterException {

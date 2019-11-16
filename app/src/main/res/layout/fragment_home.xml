@@ -9,7 +9,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dip"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/image_side_menu"
                     android:layout_width="30dip"
@@ -17,6 +18,22 @@
                     android:scaleType="fitCenter"
                     android:adjustViewBounds="true"
                     android:src="@drawable/navigation_active"/>
+
+                <TextView
+                    android:fontFamily="@font/nbi_b"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:textColor="@color/colorLightIndigo"
+                    android:text="@string/home" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"/>
         </LinearLayout>
         <ScrollView
             android:layout_width="match_parent"
@@ -29,19 +46,6 @@
                     android:layout_marginRight="20dip"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
-
-                        <TextView
-                            android:fontFamily="@font/nbi_b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="30sp"
-                            android:textColor="@color/colorLightIndigo"
-                            android:text="@string/home" />
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dip" />
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -72,7 +76,7 @@
                                                     android:fontFamily="@font/nbi_b"
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
-                                                    android:textSize="38sp"
+                                                    android:textSize="30sp"
                                                     android:textColor="@color/colorLightIndigo"
                                                     android:text="0" />
                                         </LinearLayout>
@@ -101,14 +105,14 @@
                                                     android:fontFamily="@font/nbi_b"
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
-                                                    android:textSize="38sp"
+                                                    android:textSize="30sp"
                                                     android:textColor="@color/colorLightIndigo"
                                                     android:text="0" />
                                                 <TextView
                                                     android:fontFamily="@font/nbi_b"
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="match_parent"
-                                                    android:textSize="18sp"
+                                                    android:textSize="16sp"
                                                     android:textColor="@color/colorTurquoise"
                                                     android:text="/ USD" />
                                         </LinearLayout>

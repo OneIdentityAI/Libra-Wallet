@@ -61,6 +61,16 @@ public class WelcomeActivity extends AppCompatActivity {
     private void createLibraWallet()
     {
         SharedPreferences preferences = getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
+
+        final String[] dataId = getResources().getStringArray(R.array.id_type);
+        final String[] dataName = getResources().getStringArray(R.array.id_type_name);
+
+        final SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(getResources().getString(R.string.param_oneid_id_type), dataId[0]);
+        editor.putString(getResources().getString(R.string.param_oneid_id_type_name), dataName[0]);
+        editor.putString(getResources().getString(R.string.param_oneid_gender), "male");
+        editor.apply();
+
         JSONObject jsonObject = new JSONObject();
         try {
         }
@@ -124,7 +134,7 @@ public class WelcomeActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        AsynRestClient.genericPost(this, AsynRestClient.libraMintCoinUrl, jsonObject.toString(), new AsyncHttpResponseHandler() {
+        AsynRestClient.genericPost(this, AsynRestClient.faucet + preferences.getString(getString(R.string.param_libra_wallet_address), ""), jsonObject.toString(), new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
                 progressDialog.show();
@@ -163,7 +173,7 @@ public class WelcomeActivity extends AppCompatActivity {
         }
 
         Log.e("Json", jsonObject.toString());
-        AsynRestClient.genericPost(this, AsynRestClient.libraRetrieveBalanceUrl, jsonObject.toString(), new AsyncHttpResponseHandler() {
+        AsynRestClient.genericPost(this, AsynRestClient.retrieveBalanceUrl + preferences.getString(getString(R.string.param_libra_wallet_address), ""), jsonObject.toString(), new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
                 progressDialog.show();
@@ -180,15 +190,18 @@ public class WelcomeActivity extends AppCompatActivity {
                 Log.e("Response", responseString);
                 try {
                     JSONObject jsonObject = new JSONObject(responseString);
-                    String balance = jsonObject.getString("balance");
+                    String balance = jsonObject.getString("result");
+                    double actualBalance = 0.0;
+                    if(!balance.equals(""))
+                        actualBalance = Double.parseDouble(balance)/1000000;
 
                     SharedPreferences preferences = getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString(getResources().getString(R.string.param_libra_balance), balance);
+                    editor.putString(getResources().getString(R.string.param_libra_balance), actualBalance + "");
                     editor.apply();
                     createAccount();
                 }
-                catch (JSONException e)
+                catch (Exception e)
                 {
                     e.printStackTrace();
                 }

@@ -50,7 +50,7 @@
 
                         <Space
                             android:layout_width="wrap_content"
-                            android:layout_height="30dip" />
+                            android:layout_height="20dip" />
 
                         <TextView
                             android:fontFamily="@font/nbi_b"
@@ -88,7 +88,7 @@
                             android:textSize="16sp"
                             android:textColor="@color/colorInput"
                             android:background="@drawable/rounded_input_torquoise"
-                            android:padding="14dip"
+                            android:padding="10dip"
                             app:fontFamily="sans-serif"/>
 
                         <Space
@@ -119,52 +119,19 @@
                             android:textSize="16sp"
                             android:textColor="@color/colorInput"
                             android:background="@drawable/rounded_input_torquoise"
-                            android:padding="14dip"
+                            android:padding="10dip"
                             app:fontFamily="sans-serif"/>
 
                         <Space
                             android:layout_width="wrap_content"
                             android:layout_height="20dip" />
-
-                        <LinearLayout
+                        <TextView
+                            android:fontFamily="@font/nbi_light"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-                                <TextView
-                                    android:fontFamily="@font/nbi_light"
-                                    android:layout_width="0dip"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/colorGray"
-                                    android:text="@string/password" />
-
-                                <LinearLayout
-                                    android:id="@+id/layout_password_strenght_1"
-                                    android:layout_width="40dip"
-                                    android:layout_height="8dip"
-                                    android:orientation="horizontal"
-                                    android:background="@drawable/rounded_password_unhighlight"/>
-                                <Space
-                                    android:layout_width="5dip"
-                                    android:layout_height="wrap_content" />
-                                <LinearLayout
-                                    android:id="@+id/layout_password_strenght_2"
-                                    android:layout_width="40dip"
-                                    android:layout_height="8dip"
-                                    android:orientation="horizontal"
-                                    android:background="@drawable/rounded_password_unhighlight"/>
-                                <Space
-                                    android:layout_width="5dip"
-                                    android:layout_height="wrap_content" />
-                                <LinearLayout
-                                    android:id="@+id/layout_password_strenght_3"
-                                    android:layout_width="40dip"
-                                    android:layout_height="8dip"
-                                    android:orientation="horizontal"
-                                    android:background="@drawable/rounded_password_unhighlight"/>
-                        </LinearLayout>
+                            android:textSize="16sp"
+                            android:textColor="@color/colorGray"
+                            android:text="@string/password" />
 
                         <Space
                             android:layout_width="wrap_content"
@@ -182,12 +149,12 @@
                             android:textSize="16sp"
                             android:textColor="@color/colorInput"
                             android:background="@drawable/rounded_input_torquoise"
-                            android:padding="14dip"
+                            android:padding="10dip"
                             app:fontFamily="sans-serif"/>
 
                         <Space
                             android:layout_width="wrap_content"
-                            android:layout_height="30dip" />
+                            android:layout_height="20dip" />
 
                         <TextView
                             android:fontFamily="@font/nbi_light"
@@ -260,7 +227,7 @@
                             android:layout_height="wrap_content"
                             android:textAllCaps="false"
                             android:minWidth="200dip"
-                            android:padding="20dip"
+                            android:padding="16dip"
                             android:textSize="16sp"
                             android:textColor="@color/colorWhite"
                             android:text="@string/continue_text"

@@ -13,17 +13,23 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.telephony.TelephonyManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -43,13 +49,19 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Enumeration;
 
 import ai.oneid.liveness.android.activity.CameraActivity;
 import ai.oneid.onemove.R;
 import ai.oneid.onemove.activity.MainActivity;
+import ai.oneid.onemove.activity.VerificationResultActivity;
 import ai.oneid.onemove.data.AppDelegate;
 import ai.oneid.onemove.data.AsynRestClient;
 import cz.msebera.android.httpclient.Header;
@@ -63,6 +75,7 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
 
     public LinearLayout layoutCompleteProfileSection;
     public AppCompatImageView imageProfile;
+    public TextView textInformation;
     public EditText inputFirstName;
     public EditText inputLastName;
     public EditText inputEmail;
@@ -70,20 +83,19 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
     public EditText inputGender;
     public EditText inputDob;
     public EditText inputNationality;
-    public EditText inputCompanyName;
-    public EditText inputJobTitle;
     public EditText inputIdType;
     public EditText inputIdNo;
     public Button buttonAutomaticVerification;
     public Button buttonCreateIdentity;
+    public Button buttonVerificationResult;
     public AppCompatImageView imageUploadId;
-    public AppCompatImageView imageUploadAddress;
     public LinearLayout layoutHidden1;
     public LinearLayout layoutHidden2;
     public LinearLayout layoutHidden3;
 
     public ArrayList<String> nationalityList = new ArrayList<String>();
-    public ArrayList<String> codeList = new ArrayList<String>();
+    public ArrayList<String> code3List = new ArrayList<String>();
+    public ArrayList<String> code2List = new ArrayList<String>();
     public ProgressDialog progressDialog;
     public boolean isShowDetail = false;
 
@@ -122,10 +134,48 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
         layoutCompleteProfileSection = rootView.findViewById(R.id.layout_complete_profile_section);
         imageProfile = rootView.findViewById(R.id.image_profile);
 
+        textInformation = rootView.findViewById(R.id.text_information);
         inputFirstName = rootView.findViewById(R.id.input_first_name);
+        inputFirstName.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString(getString(R.string.param_first_name), inputFirstName.getText().toString());
+                editor.apply();
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });
+
         inputLastName = rootView.findViewById(R.id.input_last_name);
+        inputLastName.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString(getString(R.string.param_last_name), inputLastName.getText().toString());
+                editor.apply();
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });
         inputEmail = rootView.findViewById(R.id.input_email);
         inputContact = rootView.findViewById(R.id.input_contact);
+        inputContact.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString(getString(R.string.param_contact), inputContact.getText().toString());
+                editor.apply();
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });
         inputGender = rootView.findViewById(R.id.input_gender);
         inputGender.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,7 +235,7 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
                         SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putString(getString(R.string.param_oneid_nationality), inputNationality.getText().toString());
-                        editor.putString(getString(R.string.param_oneid_nationality_id), codeList.get(which));
+                        editor.putString(getString(R.string.param_oneid_nationality_id), code3List.get(which));
                         editor.apply();
                     }
                 });
@@ -193,8 +243,7 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
                 dialog.show();
             }
         });
-        inputCompanyName = rootView.findViewById(R.id.input_company_name);
-        inputJobTitle = rootView.findViewById(R.id.input_job_title);
+
         inputIdType = rootView.findViewById(R.id.input_id_type);
         inputIdType.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,8 +259,8 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
                         inputIdType.setText(dataName[which]);
                         SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
                         final SharedPreferences.Editor editor = preferences.edit();
-                        editor.putString(getResources().getString(R.string.param_oneid_id_type), dataId[which]);
-                        editor.putString(getResources().getString(R.string.param_oneid_id_type_name), dataName[which]);
+                        editor.putString(getResources().getString(R.string.param_oneid_id_type), dataId[0]);
+                        editor.putString(getResources().getString(R.string.param_oneid_id_type_name), dataName[0]);
                         editor.apply();
                     }
                 });
@@ -220,12 +269,24 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
             }
         });
         inputIdNo = rootView.findViewById(R.id.input_id_no);
+        inputIdNo.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString(getString(R.string.param_oneid_id_no), inputIdNo.getText().toString());
+                editor.apply();
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });
         imageUploadId = rootView.findViewById(R.id.image_upload_id);
         imageUploadId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
-                if(preferences.getString(getString(R.string.param_oneid_credential), "").equals("")) {
+                //if(preferences.getString(getString(R.string.param_oneid_credential), "").equals("")) {
                     inputIdNo.setError(null);
                     if(inputIdNo.getText().toString().equals(""))
                         inputIdNo.setError(getString(R.string.error_required_field));
@@ -248,32 +309,7 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
                                 .start();                           //  Start ImagePicker
                     }
                 }
-            }
-        });
-        imageUploadAddress = rootView.findViewById(R.id.image_upload_address);
-        imageUploadAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
-                if(preferences.getString(getString(R.string.param_oneid_credential), "").equals("")) {
-                    imageType = "address";
-                    ImagePicker.with(ProfileFragment.this)
-                            .setToolbarColor("#58b3ff")
-                            .setStatusBarColor("#027FE5")       //  StatusBar color (works with SDK >= 21  )
-                            .setToolbarTextColor("#FFFFFF")     //  Toolbar text color (Title and Done button)
-                            .setToolbarIconColor("#FFFFFF")     //  Toolbar icon color (Back and Camera button)
-                            .setProgressBarColor("#027FE5")     //  ProgressBar color
-                            .setBackgroundColor("#FFFFFF")      //  Background color
-                            .setCameraOnly(false)               //  Camera mode
-                            .setMultipleMode(false)              //  Select multiple images or single image
-                            .setFolderMode(true)                //  Folder mode
-                            .setShowCamera(true)                //  Show camera button
-                            .setMaxSize(1)                     //  Max images can be selected
-                            .setAlwaysShowDoneButton(true)      //  Set always show done button in multiple mode
-                            .setKeepScreenOn(true)              //  Keep screen on when selecting images
-                            .start();
-                }
-            }
+            //}
         });
         try {
             JSONArray jsonArray = new JSONArray("[\n" +
@@ -2025,7 +2061,8 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsobObject = jsonArray.getJSONObject(i);
                 nationalityList.add(jsobObject.getString("nationality"));
-                codeList.add(jsobObject.getString("alpha_3_code"));
+                code3List.add(jsobObject.getString("alpha_3_code"));
+                code2List.add(jsobObject.getString("alpha_2_code"));
             }
         }
         catch (Exception e)
@@ -2067,8 +2104,6 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
                 inputGender.setError(null);
                 inputDob.setError(null);
                 inputNationality.setError(null);
-                inputCompanyName.setError(null);
-                inputJobTitle.setError(null);
                 inputIdType.setError(null);
                 inputIdNo.setError(null);
                 if(inputGender.getText().toString().equals(""))
@@ -2077,10 +2112,6 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
                     inputDob.setError(getString(R.string.error_required_field));
                 if(inputNationality.getText().toString().equals(""))
                     inputNationality.setError(getString(R.string.error_required_field));
-                if(inputCompanyName.getText().toString().equals(""))
-                    inputCompanyName.setError(getString(R.string.error_required_field));
-                if(inputJobTitle.getText().toString().equals(""))
-                    inputJobTitle.setError(getString(R.string.error_required_field));
                 if(inputIdType.getText().toString().equals(""))
                     inputIdType.setError(getString(R.string.error_required_field));
                 if(inputIdNo.getText().toString().equals(""))
@@ -2097,18 +2128,21 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
                 }
 
                 if(!inputGender.getText().toString().equals("") && !inputDob.getText().toString().equals("") &&
-                        !inputNationality.getText().toString().equals("") && !inputCompanyName.getText().toString().equals("") &&
-                        !inputJobTitle.getText().toString().equals("") && !inputIdType.getText().toString().equals("") &&
+                        !inputNationality.getText().toString().equals("") && !inputIdType.getText().toString().equals("") &&
                         !inputIdNo.getText().toString().equals("") &&
                         !preferences.getString(getString(R.string.param_oneid_selfie), "").equals("") &&
                         !preferences.getString(getString(R.string.param_oneid_id_image), "").equals(""))
                 {
-                    final SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString(getString(R.string.param_oneid_company_name), inputCompanyName.getText().toString());
-                    editor.putString(getString(R.string.param_oneid_job_title), inputJobTitle.getText().toString());
-                    editor.apply();
                     createOneIdentity();
                 }
+            }
+        });
+        buttonVerificationResult = rootView.findViewById(R.id.button_verification_result);
+        buttonVerificationResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, VerificationResultActivity.class);
+                startActivity(intent);
             }
         });
         layoutHidden1 = rootView.findViewById(R.id.layout_hidden_1);
@@ -2125,9 +2159,21 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
         inputGender.setText(preferences.getString(getString(R.string.param_oneid_gender), ""));
         inputDob.setText(preferences.getString(getString(R.string.param_oneid_dob), ""));
         inputNationality.setText(preferences.getString(getString(R.string.param_oneid_nationality), ""));
-        inputCompanyName.setText(preferences.getString(getString(R.string.param_oneid_company_name), ""));
-        inputJobTitle.setText(preferences.getString(getString(R.string.param_oneid_job_title), ""));
-        inputIdType.setText(preferences.getString(getString(R.string.param_oneid_id_type_name), ""));
+        TelephonyManager tm = (TelephonyManager)activity.getSystemService(Context.TELEPHONY_SERVICE);
+        String countryCodeValue = tm.getNetworkCountryIso().toUpperCase();
+        Log.e("Locale", countryCodeValue + "");
+        SharedPreferences.Editor editor = preferences.edit();
+        if(preferences.getString(getString(R.string.param_oneid_nationality), "").equals(""))
+        {
+            int index = code2List.indexOf(countryCodeValue);
+            if(index != -1) {
+                editor.putString(getString(R.string.param_oneid_nationality), nationalityList.get(index));
+                editor.putString(getString(R.string.param_oneid_nationality_id), code3List.get(index));
+                editor.apply();
+                inputNationality.setText(preferences.getString(getString(R.string.param_oneid_nationality), ""));
+            }
+        }
+        inputIdType.setText(preferences.getString(getString(R.string.param_oneid_id_type_name), "passport"));
         inputIdNo.setText(preferences.getString(getString(R.string.param_oneid_id_no), ""));
 
         String selfie = preferences.getString(getString(R.string.param_oneid_selfie), "");
@@ -2135,6 +2181,15 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
             viewUpload(selfie, "selfie");
         }
         triggerHiddenLayout();
+        String credential = preferences.getString(getString(R.string.param_oneid_credential), "");
+        if(credential.equals(""))
+        {
+            buttonVerificationResult.setVisibility(View.GONE);
+        }
+        else
+        {
+            buttonVerificationResult.setVisibility(View.VISIBLE);
+        }
         return rootView;
     }
 
@@ -2142,7 +2197,6 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
     {
         SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
         String idImage = preferences.getString(getString(R.string.param_oneid_id_image), "");
-        String addressImage = preferences.getString(getString(R.string.param_oneid_address_image), "");
         String credential = preferences.getString(getString(R.string.param_oneid_credential), "");
         if(isShowDetail)
         {
@@ -2150,24 +2204,19 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
             {
                 viewUpload(idImage, "id");
             }
-            if(!addressImage.equals(""))
-            {
-                viewUpload(addressImage, "address");
-            }
-
             if(credential.equals(""))
             {
                 layoutHidden1.setVisibility(View.VISIBLE);
                 layoutHidden2.setVisibility(View.VISIBLE);
                 layoutHidden3.setVisibility(View.VISIBLE);
-                buttonCreateIdentity.setVisibility(View.VISIBLE);
+                buttonVerificationResult.setVisibility(View.GONE);
             }
             else
             {
                 layoutHidden1.setVisibility(View.GONE);
-                layoutHidden2.setVisibility(View.GONE);
+                layoutHidden2.setVisibility(View.VISIBLE);
                 layoutHidden3.setVisibility(View.VISIBLE);
-                buttonCreateIdentity.setVisibility(View.GONE);
+                buttonVerificationResult.setVisibility(View.VISIBLE);
             }
         }
         else
@@ -2237,7 +2286,7 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
                                 fo.write(imageByteArray);
                                 fo.flush();
                                 fo.close();
-                                utilityUpload(Environment.getExternalStorageDirectory().toString() + AppDelegate.appPath + "/" + preferences.getString(getString(R.string.param_utility_user_id), "") + ".jpg");
+                                utilityUpload(Environment.getExternalStorageDirectory().toString() + AppDelegate.appPath + "/" + preferences.getString(getString(R.string.param_utility_user_id), "") + ".jpg", preferences.getString(getString(R.string.param_libra_wallet_address), ""));
                             }
                             catch (Exception e)
                             {
@@ -2245,10 +2294,9 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
                             }
                         }
                     }
-                    else if(type.equals("id"))
+                    else if(type.equals("id")) {
                         Glide.with(activity).load(imageByteArray).into(imageUploadId);
-                    else if(type.equals("address"))
-                        Glide.with(activity).load(imageByteArray).into(imageUploadAddress);
+                    }
                 }
                 catch (JSONException e)
                 {
@@ -2340,15 +2388,13 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
             Log.e("imagePath", imagePath);
             Log.e("imageName", imageName);
 
-            if(imageType.equals("id")) {
+            SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
+            if(imageType.equals("id") ) {
                 Glide.with(this).load(new File(imagePath)).into(imageUploadId);
-                SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
                 String documentType = preferences.getString(getResources().getString(R.string.param_oneid_id_type), "");
                 upload(documentType);
-            }
-            else if(imageType.equals("address")) {
-                Glide.with(this).load(new File(imagePath)).into(imageUploadAddress);
-                upload("address");
+
+                utilityUpload(imagePath, preferences.getString(getString(R.string.param_libra_wallet_address), "") + "_id");
             }
         }
     }
@@ -2406,8 +2452,8 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                String responseString = new String(errorResponse);
-                Log.e("Upload response", responseString);
+                //String responseString = new String(errorResponse);
+                //Log.e("Upload response", responseString);
             }
 
             @Override
@@ -2425,7 +2471,7 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("token", preferences.getString(getString(R.string.param_oneid_token), ""));
-            jsonObject.put("job_title", preferences.getString(getString(R.string.param_oneid_job_title), ""));
+            jsonObject.put("job_title", "");
             jsonObject.put("first_name", preferences.getString(getString(R.string.param_first_name), ""));
             jsonObject.put("last_name", preferences.getString(getString(R.string.param_last_name), ""));
             jsonObject.put("email", preferences.getString(getString(R.string.param_email), ""));
@@ -2436,8 +2482,9 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
             jsonObject.put("id_image", preferences.getString(getString(R.string.param_oneid_id_image), ""));
             jsonObject.put("proof_address_image", preferences.getString(getString(R.string.param_oneid_address_image), ""));
             jsonObject.put("selfie_image", preferences.getString(getString(R.string.param_oneid_selfie), ""));
-            jsonObject.put("company_name", preferences.getString(getString(R.string.param_oneid_company_name), ""));
+            jsonObject.put("company_name", "");
             jsonObject.put("doc_type", preferences.getString(getString(R.string.param_oneid_id_type), ""));
+            jsonObject.put("bypass_address", "1");
         }
         catch (Exception e)
         {
@@ -2470,20 +2517,28 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
                     }
 
                     String status = jsonObject.getString("status");
-                    if(!status.equals("200"))
+                    if(status.equals("422"))
                     {
                         String type = jsonObject.getString("type");
                         String message = jsonObject.getString("message");
                         alert(type, message);
-                        return;
+                        SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString(getResources().getString(R.string.param_oneid_credential), jsonObject.toString());
+                        editor.apply();
+                        triggerHiddenLayout();
                     }
-
-                    alert(getString(R.string.success), getString(R.string.success_identity_credential));
-                    SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString(getResources().getString(R.string.param_oneid_credential), jsonObject.toString());
-                    editor.apply();
-                    triggerHiddenLayout();
+                    else if(status.equals("200"))
+                    {
+                        alert(getString(R.string.success), getString(R.string.success_identity_credential));
+                        SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString(getResources().getString(R.string.param_oneid_credential), jsonObject.toString());
+                        editor.apply();
+                        triggerHiddenLayout();
+                        String credDefId = jsonObject.getString("id");
+                        registerFromOneMove(credDefId);
+                    }
                 }
                 catch (JSONException e)
                 {
@@ -2494,20 +2549,20 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                String responseString = new String(errorResponse);
-                Log.e("Response", responseString);
+                //String responseString = new String(errorResponse);
+                //Log.e("Response", responseString);
                 alert(getString(R.string.error), getString(R.string.error_please_try_again));
-                Log.e("Helo", "Hello");
+                //Log.e("Helo", "Hello");
             }
         });
     }
 
-    public void utilityUpload(String path)
+    public void utilityUpload(String path, String tag)
     {
         SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
         String id = preferences.getString(getResources().getString(R.string.param_utility_user_id), "");
 
-        AsynRestClient.utilityUpload(id, path, new AsyncHttpResponseHandler()
+        AsynRestClient.utilityUpload(id, tag, path, new AsyncHttpResponseHandler()
         {
             @Override
             public void onStart() {
@@ -2528,8 +2583,8 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                String responseString = new String(errorResponse);
-                Log.e("Upload response", responseString);
+                //String responseString = new String(errorResponse);
+                //Log.e("Upload response", responseString);
             }
 
             @Override
@@ -2539,5 +2594,86 @@ public class ProfileFragment extends Fragment implements DatePickerDialog.OnDate
                 progressDialog.setMax(100);
             }
         });
+    }
+
+    public static String getLocalIpAddress() {
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
+                        return inetAddress.getHostAddress();
+                    }
+                }
+            }
+        } catch (SocketException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    private void registerFromOneMove(String credDefId)
+    {
+        SharedPreferences preferences = activity.getSharedPreferences(AppDelegate.SharedPreferencesTag, Context.MODE_PRIVATE);
+        String libraWalletAddress = preferences.getString(getResources().getString(R.string.param_libra_wallet_address), "");
+        String firstName = preferences.getString(getString(R.string.param_first_name), "");
+        String lastName = preferences.getString(getString(R.string.param_last_name), "");
+        String email = preferences.getString(getString(R.string.param_email), "");
+        String contact = preferences.getString(getString(R.string.param_contact), "");
+        String gender = preferences.getString(getString(R.string.param_oneid_gender), "");
+        String dob = preferences.getString(getString(R.string.param_oneid_dob), "");
+        String nationality = preferences.getString(getString(R.string.param_oneid_nationality_id), "");
+        String companyName = preferences.getString(getString(R.string.param_oneid_company_name), "");
+        String jobTitle = preferences.getString(getString(R.string.param_oneid_job_title), "");
+        String idType = preferences.getString(getString(R.string.param_oneid_id_type_name), "");
+        String idNo = preferences.getString(getString(R.string.param_oneid_id_no), "");
+        String selfie = preferences.getString(getString(R.string.param_oneid_selfie), "");
+        //String credDefId = preferences.getString(getResources().getString(R.string.param_oneid_credential), "");
+
+        TelephonyManager telephonyManager = (TelephonyManager)activity.getSystemService(Context.TELEPHONY_SERVICE);
+        String countryCode = telephonyManager.getSimCountryIso();
+
+        String documentType = "5";
+        if(idType.equals("passport"))
+            documentType = "1";
+        if(idType.equals("id"))
+            documentType = "5";
+        if(idType.equals("license"))
+            documentType = "6";
+
+        AsynRestClient.registerFromOneMove(email, "MTIzNDU2", credDefId, getLocalIpAddress(), countryCode, libraWalletAddress, firstName, lastName,
+                "", gender, dob, "Bangsar South, 59200 Kuala Lumpur, Federal Territory of Kuala Lumpur", "", "59200",
+                "Kuala Lumpur", "WP Kuala Lumpur", "Malaysia", "MY", "Kuala Lumpur", "0123456789",
+                idNo, "Programmer", "75FE7ED6-0BAC-4C55-9C20-732E4D1CB11B", "false", "false",
+                "false", AsynRestClient.utilityServiceUrl + "uploads/" + libraWalletAddress + ".jpg",
+                AsynRestClient.utilityServiceUrl + "uploads/" + libraWalletAddress + "_address.jpg",
+                documentType,
+                AsynRestClient.utilityServiceUrl + "uploads/" + libraWalletAddress + "_id.jpg", new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onStart() {
+                        progressDialog.show();
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        progressDialog.dismiss();
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        String responseString = new String(responseBody);
+                        Log.e("Response", responseString);
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                        // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                        //String responseString = new String(errorResponse);
+                        //Log.e("Response", responseString);
+                        //alert(getString(R.string.error), getString(R.string.error_please_try_again));
+                        //Log.e("Helo", "Hello");
+                    }
+                });
     }
 }

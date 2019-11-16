@@ -10,6 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dip"
+            android:gravity="center"
             android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/image_back"
@@ -19,10 +20,21 @@
                     android:adjustViewBounds="true"
                     android:src="@drawable/back_active"/>
 
-                <Space
+                <TextView
+                    android:fontFamily="@font/nbi_b"
                     android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:textColor="@color/colorLightIndigo"
+                    android:text="@string/search_contact" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dip"
                     android:layout_height="30dip"
-                    android:layout_weight="1"/>
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"/>
         </LinearLayout>
         <ScrollView
             android:layout_width="match_parent"
@@ -35,19 +47,6 @@
                     android:layout_marginRight="20dip"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
-
-                        <TextView
-                            android:fontFamily="@font/nbi_b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="30sp"
-                            android:textColor="@color/colorLightIndigo"
-                            android:text="@string/search_contact" />
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dip" />
-
                         <EditText
                             android:id="@+id/input_search"
                             android:fontFamily="@font/nbi_b"
@@ -60,7 +59,7 @@
                             android:textSize="16sp"
                             android:textColor="@color/colorInput"
                             android:background="@drawable/rounded_input_torquoise"
-                            android:padding="14dip"
+                            android:padding="10dip"
                             app:fontFamily="sans-serif"/>
 
 
